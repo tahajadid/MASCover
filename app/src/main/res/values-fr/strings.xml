@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MAS Cover</string>
+    <string name="hello_blank_fragment">Bonjour</string>
+    <string name="categorie_title">Catégorie</string>
+    <string name="add_favourrite">Ajouter aux favoris</string>
+    <string name="my_favourite">Mes favoris</string>
+    <string name="setting">Paramètres</string>
+    <string name="set_as_wallpaper">Définir Fond Ecran</string>
+    <string name="feedback">Vos Avis</string>
+    <string name="notFavourite">notFavourite</string>
+    <string name="isFavourite">isFavourite</string>
+    <string name="emptyFavourite">Rien a été ajoutés</string>
+    <string name="develop">En cours de développement</string>
+</resources>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="tahadeta.example.mascover.ui.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_listWallpaperFragment"
+            app:destination="@id/listWallpaperFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_favouriteFragment"
+            app:destination="@id/favouriteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="tahadeta.example.mascover.ui.setting.SettingFragment"
+        android:label="fragment_setting"
+        tools:layout="@layout/fragment_setting" />
+    <fragment
+        android:id="@+id/favouriteFragment"
+        android:name="tahadeta.example.mascover.ui.favourite.FavouriteFragment"
+        android:label="fragment_favourite"
+        tools:layout="@layout/fragment_favourite" />
+    <fragment
+        android:id="@+id/listWallpaperFragment"
+        android:name="tahadeta.example.mascover.ui.wallpaper.ListWallpaperFragment"
+        android:label="fragment_list_wallpaper"
+        tools:layout="@layout/fragment_list_wallpaper" >
+        <argument
+            android:name="idCategorie"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_listWallpaperFragment_to_detailWallpaperFragment"
+            app:destination="@id/detailWallpaperFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailWallpaperFragment"
+        android:name="tahadeta.example.mascover.ui.wallpaper.DetailWallpaperFragment"
+        android:label="fragment_detail_wallpaper"
+        tools:layout="@layout/fragment_detail_wallpaper" >
+        <argument
+            android:name="idWallpaper"
+            app:argType="string" />
+        <argument android:name="path4K"
+            app:argType="string" />
+    </fragment>
+</navigation>

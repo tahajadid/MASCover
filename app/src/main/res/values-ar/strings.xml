@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MAS Cover</string>
+    <string name="hello_blank_fragment">مرحبا</string>
+    <string name="categorie_title">الفئة</string>
+    <string name="add_favourrite">إضافة إلى المفضلة لدي</string>
+    <string name="my_favourite">قائمة المفضلات</string>
+    <string name="setting">الإعدادات</string>
+    <string name="set_as_wallpaper">وضعها كخلفية</string>
+    <string name="feedback">رأيكم</string>
+    <string name="notFavourite">notFavourite</string>
+    <string name="isFavourite">isFavourite</string>
+    <string name="emptyFavourite"> لم تضف صورة في قائمة المفضلات</string>
+    <string name="develop">في طور التطوير </string>
+
+</resources>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1068414615411",
+    "project_id": "mas-cover",
+    "storage_bucket": "mas-cover.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1068414615411:android:ff9e8684c36e9e96250f06",
+        "android_client_info": {
+          "package_name": "tahadeta.example.mascover"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1068414615411-uno76caskt156ib6j0hjnq31r76ph5t7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-d2iOeJnXCfXx25SVUoT775YGPmWUOPM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1068414615411-uno76caskt156ib6j0hjnq31r76ph5t7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
