@@ -64,10 +64,9 @@ class WallpaperAdapter(
 
             val action = ListWallpaperFragmentDirections
                 .actionListWallpaperFragmentToDetailWallpaperFragment(
-                    item.pathPoster.toString(),item.pathPoster4K.toString())
+                    item.pathPoster.toString(), item.pathPoster4K.toString()
+                )
             holder.itemView.findNavController().navigate(action)
-
-
         }
     }
 

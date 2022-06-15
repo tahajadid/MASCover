@@ -29,7 +29,11 @@
         android:id="@+id/favouriteFragment"
         android:name="tahadeta.example.mascover.ui.favourite.FavouriteFragment"
         android:label="fragment_favourite"
-        tools:layout="@layout/fragment_favourite" />
+        tools:layout="@layout/fragment_favourite" >
+        <action
+            android:id="@+id/action_favouriteFragment_to_detailWallpaperFragment"
+            app:destination="@id/detailWallpaperFragment" />
+    </fragment>
     <fragment
         android:id="@+id/listWallpaperFragment"
         android:name="tahadeta.example.mascover.ui.wallpaper.ListWallpaperFragment"

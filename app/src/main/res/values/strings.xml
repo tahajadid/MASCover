@@ -11,4 +11,8 @@
     <string name="isFavourite">isFavourite</string>
     <string name="emptyFavourite">Rien a été ajoutés</string>
     <string name="develop">En cours de développement</string>
+    <string name="acceuil">Acceuil</string>
+    <string name="lock">Verrouillage</string>
+    <string name="both">Acceuil et Verrouillage</string>
+
 </resources>
