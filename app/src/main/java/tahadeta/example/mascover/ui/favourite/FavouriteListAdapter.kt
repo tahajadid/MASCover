@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import tahadeta.example.mascover.R
 import tahadeta.example.mascover.data.Wallpaper
 import tahadeta.example.mascover.util.WallpaperHelper
+import tahadeta.example.mascover.util.listFavourite
 
 class FavouriteListAdapter(
     private val context: Context?,
@@ -39,9 +40,11 @@ class FavouriteListAdapter(
             if (img.tag.equals("notFavourite")) {
                 img.setImageResource(R.drawable.star_fill)
                 img.tag = "isFavourite"
+                listFavourite.add(item)
             } else {
                 img.setImageResource(R.drawable.star)
                 img.tag = "notFavourite"
+                listFavourite.remove(item)
             }
         }
 
