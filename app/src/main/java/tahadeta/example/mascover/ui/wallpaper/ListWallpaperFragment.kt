@@ -15,6 +15,8 @@ import com.airbnb.lottie.LottieAnimationView
 import com.google.firebase.firestore.FirebaseFirestore
 import tahadeta.example.mascover.R
 import tahadeta.example.mascover.data.Wallpaper
+import tahadeta.example.mascover.util.Constants
+import tahadeta.example.mascover.util.ModelPreferencesManager
 
 class ListWallpaperFragment : Fragment() {
 
@@ -41,6 +43,12 @@ class ListWallpaperFragment : Fragment() {
         // Inflate the layout for this fragment
         val root = inflater.inflate(R.layout.fragment_list_wallpaper, container, false)
 
+
+        if (ModelPreferencesManager.get<Boolean>(Constants.FIRST_CON) == null) {
+            ModelPreferencesManager.put(true, Constants.FIRST_CON)
+            Log.d("FistTest", "FirstConn..")
+        }
+
         recyclerView = root.findViewById(R.id.listWallpapers)
         animationView = root.findViewById(R.id.animationLoading)
         backImage = root.findViewById(R.id.backImage)
@@ -63,6 +71,7 @@ class ListWallpaperFragment : Fragment() {
 
         return root
     }
+
 
     fun getWallpapers() {
 

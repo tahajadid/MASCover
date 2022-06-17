@@ -9,8 +9,8 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import tahadeta.example.mascover.R
 import tahadeta.example.mascover.data.Wallpaper
-import tahadeta.example.mascover.ui.wallpaper.ListWallpaperFragmentDirections
 import tahadeta.example.mascover.util.WallpaperHelper
+import tahadeta.example.mascover.util.listFavourite
 
 class FavouriteListAdapter(
     private val context: Context?,
@@ -40,18 +40,19 @@ class FavouriteListAdapter(
             if (img.tag.equals("notFavourite")) {
                 img.setImageResource(R.drawable.star_fill)
                 img.tag = "isFavourite"
+                listFavourite.add(item)
             } else {
                 img.setImageResource(R.drawable.star)
                 img.tag = "notFavourite"
+                listFavourite.remove(item)
             }
         }
 
         // Parse path of the poster to be displayed
         holder.itemView.findViewById<ImageView>(R.id.imageWallpaper).setOnClickListener {
-            val action = ListWallpaperFragmentDirections
-                .actionListWallpaperFragmentToDetailWallpaperFragment(
-                    item.pathPoster.toString(), item.pathPoster4K.toString()
-                )
+            val action = FavouriteFragmentDirections.actionFavouriteFragmentToDetailWallpaperFragment(
+                item.pathPoster.toString(), item.pathPoster4K.toString()
+            )
             holder.itemView.findNavController().navigate(action)
         }
     }

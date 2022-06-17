@@ -12,5 +12,8 @@
     <string name="isFavourite">isFavourite</string>
     <string name="emptyFavourite"> لم تضف صورة في قائمة المفضلات</string>
     <string name="develop">في طور التطوير </string>
+    <string name="acceuil">شاشة الرئيسية</string>
+    <string name="lock">شاشة القفل</string>
+    <string name="both">الشاشة الرئيسية و القفل</string>
 
 </resources>
