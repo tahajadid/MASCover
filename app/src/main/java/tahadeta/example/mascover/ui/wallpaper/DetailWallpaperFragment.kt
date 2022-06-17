@@ -2,7 +2,6 @@ package tahadeta.example.mascover.ui.wallpaper
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.app.WallpaperManager
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -16,13 +15,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.airbnb.lottie.LottieAnimationView
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import tahadeta.example.mascover.R
@@ -31,7 +35,6 @@ import tahadeta.example.mascover.util.WallpaperHelper
 import java.io.File
 import java.io.IOException
 
-
 class DetailWallpaperFragment : Fragment() {
 
     private val args by navArgs<DetailWallpaperFragmentArgs>()
@@ -39,11 +42,12 @@ class DetailWallpaperFragment : Fragment() {
     lateinit var likeImage: ImageView
     lateinit var dislikeImage: ImageView
     lateinit var downloadVew: View
-    lateinit var bitmapLast: Bitmap
+    var bitmapLast: Bitmap? = null
     lateinit var imageWallpaper: ImageView
     lateinit var imagePhone: ImageView
     lateinit var imageTiger: ImageView
 
+    lateinit var progressBar: ProgressBar
     lateinit var homeTv: TextView
     lateinit var lockTv: TextView
     lateinit var bothTv: TextView
@@ -80,10 +84,11 @@ class DetailWallpaperFragment : Fragment() {
         chooseWallpaper = root.findViewById(R.id.chooseWallpaper_Cl)
         viewloading = root.findViewById(R.id.viewloading)
         loading = root.findViewById(R.id.animationLoading)
+        progressBar = root.findViewById(R.id.progressBar)
 
         loading.visibility = View.GONE
 
-        WallpaperHelper.setImage(imageWallpaper, args.idWallpaper)
+        WallpaperHelper.setImage(imageWallpaper, args.path4K)
         fadeToUp(imagePhone, 70F, 1000)
 
         Handler().postDelayed({
@@ -102,15 +107,18 @@ class DetailWallpaperFragment : Fragment() {
         likeImage.setOnClickListener {
             likeImage.setImageResource(R.drawable.like_fill)
             dislikeImage.setImageResource(R.drawable.dislike)
+            incrementLike()
         }
 
         dislikeImage.setOnClickListener {
             likeImage.setImageResource(R.drawable.like)
             dislikeImage.setImageResource(R.drawable.dislike_fill)
+            incrementDislike()
         }
 
         downloadVew.setOnClickListener {
             downloadImage(args.path4K)
+            incrementDownloads()
         }
 
         setWallpaperView.setOnClickListener {
@@ -124,19 +132,42 @@ class DetailWallpaperFragment : Fragment() {
         }
 
         homeTv.setOnClickListener {
+            progressBar.visibility = View.VISIBLE
             tempoViewLoading()
             setWallpaperImage(1)
+            incrementDownloads()
         }
         lockTv.setOnClickListener {
+            progressBar.visibility = View.VISIBLE
             tempoViewLoading()
             setWallpaperImage(2)
+            incrementDownloads()
         }
         bothTv.setOnClickListener {
+            progressBar.visibility = View.VISIBLE
             tempoViewLoading()
             setWallpaperImage(3)
+            incrementDownloads()
         }
     }
 
+    private fun incrementDownloads() {
+        var database = FirebaseFirestore.getInstance()
+        val washingtonRef: DocumentReference = database.collection("wallpaper").document(args.idWallpaper)
+        washingtonRef.update("numberDownload", FieldValue.increment(1))
+    }
+
+    private fun incrementLike() {
+        var database = FirebaseFirestore.getInstance()
+        val washingtonRef: DocumentReference = database.collection("wallpaper").document(args.idWallpaper)
+        washingtonRef.update("numberLike", FieldValue.increment(1))
+    }
+
+    private fun incrementDislike() {
+        var database = FirebaseFirestore.getInstance()
+        val washingtonRef: DocumentReference = database.collection("wallpaper").document(args.idWallpaper)
+        washingtonRef.update("numberDislike", FieldValue.increment(1))
+    }
 
     private fun downloadImage(pathImage: String) {
 
@@ -177,8 +208,7 @@ class DetailWallpaperFragment : Fragment() {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
 
                     if (bitmapLast == null) {
-                        downloadImage(args.path4K)
-                        setWallpaperImage(number)
+                        downloadAndSet(number)
                     } else {
                         when (number) {
                             1 -> wallpaperManager.setBitmap(bitmapLast, null, true, WallpaperManager.FLAG_SYSTEM)
@@ -189,13 +219,62 @@ class DetailWallpaperFragment : Fragment() {
                             }
                         }
                     }
+                    progressBar.visibility = View.GONE
                 }
             } catch (e: IOException) {
+                progressBar.visibility = View.GONE
                 // here the errors can be logged instead of printStackTrace
                 e.printStackTrace()
             }
         } else {
+            progressBar.visibility = View.GONE
             Toast.makeText(activity, "Permission Rejetée, Activez la permission", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    fun downloadAndSet(number: Int) {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            if (isWallpaperPermissionGranted()) {
+
+                if (isStoragePermissionGranted()) {
+                    Toast.makeText(activity, Constants.DOWNLOAD_FR, Toast.LENGTH_SHORT).show()
+
+                    val refStorage = Firebase.storage.reference.child(args.path4K)
+
+                    val localFile = File.createTempFile("tempImag", "jpg")
+                    refStorage.getFile(localFile).addOnCompleteListener {
+
+                        bitmapLast = BitmapFactory.decodeFile(localFile.absolutePath)
+
+                        MediaStore.Images.Media.insertImage(
+                            requireActivity().getContentResolver(),
+                            bitmapLast,
+                            args.path4K,
+                            "Image"
+                        )
+
+                        val wallpaperManager =
+                            WallpaperManager.getInstance(context)
+
+                        when (number) {
+                            1 -> wallpaperManager.setBitmap(bitmapLast, null, true, WallpaperManager.FLAG_SYSTEM)
+                            2 -> wallpaperManager.setBitmap(bitmapLast, null, false, WallpaperManager.FLAG_LOCK)
+                            3 -> {
+                                wallpaperManager.setBitmap(bitmapLast, null, false, WallpaperManager.FLAG_LOCK)
+                                wallpaperManager.setBitmap(bitmapLast, null, true, WallpaperManager.FLAG_SYSTEM)
+                            }
+                        }
+
+                        Toast.makeText(activity, Constants.END_DOWNLOAD_FR, Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    Toast.makeText(activity, "Permission Rejetée, Activez la permission", Toast.LENGTH_LONG).show()
+                }
+            }
+        } else {
+            Toast.makeText(activity, Constants.JUST_DOWNLOAD_FR, Toast.LENGTH_LONG).show()
         }
     }
 
@@ -248,13 +327,13 @@ class DetailWallpaperFragment : Fragment() {
     }
 
     private fun tempoViewLoading() {
-                viewloading.visibility = View.VISIBLE
+        viewloading.visibility = View.VISIBLE
         loading.visibility = View.VISIBLE
 
         Handler().postDelayed({
             viewloading.visibility = View.GONE
             loading.visibility = View.GONE
-        }, 1400) // 3000 is the delayed time in milliseconds.
+        }, 3000) // 3000 is the delayed time in milliseconds.
 
         chooseWallpaper.visibility = View.GONE
         isShow = false
