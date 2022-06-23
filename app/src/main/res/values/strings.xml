@@ -14,5 +14,6 @@
     <string name="acceuil">Acceuil</string>
     <string name="lock">Verrouillage</string>
     <string name="both">Acceuil et Verrouillage</string>
+    <string name="choiceLangue">Choix de la langue</string>
 
 </resources>

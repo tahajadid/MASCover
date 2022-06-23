@@ -15,5 +15,6 @@
     <string name="acceuil">شاشة الرئيسية</string>
     <string name="lock">شاشة القفل</string>
     <string name="both">الشاشة الرئيسية و القفل</string>
+    <string name="choiceLangue">تغيير اللغة</string>
 
 </resources>
