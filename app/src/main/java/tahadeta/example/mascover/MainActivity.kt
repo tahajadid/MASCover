@@ -27,5 +27,9 @@ class MainActivity : AppCompatActivity() {
             ModelPreferencesManager.put(true, Constants.FIRST_CON)
             Log.d("FistTest", "FirstConn..")
         }
+
+        if (ModelPreferencesManager.get<Boolean>(Constants.IS_FRENSH) == null) {
+            ModelPreferencesManager.put(true, Constants.IS_FRENSH)
+        }
     }
 }
