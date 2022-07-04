@@ -16,5 +16,8 @@
     <string name="lock">شاشة القفل</string>
     <string name="both">الشاشة الرئيسية و القفل</string>
     <string name="choiceLangue">تغيير اللغة</string>
+    <string name="goUpdate">تحديث التطبيق</string>
+    <string name="newVersion">نسخة جديدة</string>
+    <string name="cancel">إلغاء</string>
 
 </resources>
