@@ -51,21 +51,26 @@ class SettingFragment : Fragment() {
             switchFrensh.isChecked = true
         }
 
+        // Behavior of switch with click not with slide
         switchArab.setOnClickListener {
-            if (!switchArab.isChecked) {
+            if (switchArab.isChecked) {
                 localeDelegate.setLocale(this.requireActivity(), Locales.Arabic)
                 switchArab.isChecked = true
                 switchFrensh.isChecked = false
                 ModelPreferencesManager.put(false, Constants.IS_FRENSH)
+            } else {
+                switchArab.isChecked = true
             }
         }
 
         switchFrensh.setOnClickListener {
-            if (!switchFrensh.isChecked) {
+            if (switchFrensh.isChecked) {
                 localeDelegate.setLocale(this.requireActivity(), Locales.French)
                 switchArab.isChecked = false
                 switchFrensh.isChecked = true
                 ModelPreferencesManager.put(true, Constants.IS_FRENSH)
+            } else {
+                switchFrensh.isChecked = true
             }
         }
 
