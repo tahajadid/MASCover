@@ -5,14 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Switch
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.zeugmasolutions.localehelper.LocaleHelperActivityDelegate
+import com.zeugmasolutions.localehelper.LocaleHelperActivityDelegateImpl
+import com.zeugmasolutions.localehelper.Locales
 import tahadeta.example.mascover.R
 import tahadeta.example.mascover.util.Constants
 import tahadeta.example.mascover.util.ModelPreferencesManager
 
 class SettingFragment : Fragment() {
+
+    private val localeDelegate: LocaleHelperActivityDelegate = LocaleHelperActivityDelegateImpl()
 
     lateinit var homeImage: View
     lateinit var favouriteImage: View
@@ -36,26 +40,41 @@ class SettingFragment : Fragment() {
         switchArab = root.findViewById(R.id.switch_ar)
         switchFrensh = root.findViewById(R.id.switch_fr)
 
-        favouriteImage.setOnClickListener {
-            findNavController().navigate(R.id.favouriteFragment)
+        switchArab.isChecked = false
+        switchFrensh.isChecked = false
+
+        // Set the actual language
+        val isFrensh = ModelPreferencesManager.get<Boolean>(Constants.IS_FRENSH)
+        if (isFrensh == false) {
+            switchArab.isChecked = true
+        } else {
+            switchFrensh.isChecked = true
         }
 
-        switchArab.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
+        switchArab.setOnClickListener {
+            if (!switchArab.isChecked) {
+                localeDelegate.setLocale(this.requireActivity(), Locales.Arabic)
+                switchArab.isChecked = true
                 switchFrensh.isChecked = false
                 ModelPreferencesManager.put(false, Constants.IS_FRENSH)
             }
         }
 
-        switchFrensh.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
+        switchFrensh.setOnClickListener {
+            if (!switchFrensh.isChecked) {
+                localeDelegate.setLocale(this.requireActivity(), Locales.French)
                 switchArab.isChecked = false
+                switchFrensh.isChecked = true
                 ModelPreferencesManager.put(true, Constants.IS_FRENSH)
             }
         }
 
         homeImage.setOnClickListener {
             findNavController().navigate(R.id.homeFragment)
+        }
+
+        favouriteImage.setOnClickListener {
+            findNavController().navigate(R.id.favouriteFragment)
         }
 
         return root

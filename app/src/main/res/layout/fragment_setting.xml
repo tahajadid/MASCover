@@ -216,6 +216,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
         android:text="Français"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/switch_fr"
         app:layout_constraintEnd_toStartOf="@+id/switch_fr"
         app:layout_constraintTop_toTopOf="@+id/switch_fr" />
@@ -236,6 +237,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
         android:text="العربية"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/switch_ar"
         app:layout_constraintEnd_toStartOf="@+id/switch_ar"
         app:layout_constraintTop_toTopOf="@+id/switch_ar" />
@@ -260,9 +262,8 @@
         android:layout_height="2dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:background="@color/main_yellow"
+        android:background="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/switch_ar" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
