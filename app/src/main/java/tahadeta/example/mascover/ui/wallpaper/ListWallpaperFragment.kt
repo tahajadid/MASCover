@@ -43,7 +43,6 @@ class ListWallpaperFragment : Fragment() {
         // Inflate the layout for this fragment
         val root = inflater.inflate(R.layout.fragment_list_wallpaper, container, false)
 
-
         if (ModelPreferencesManager.get<Boolean>(Constants.FIRST_CON) == null) {
             ModelPreferencesManager.put(true, Constants.FIRST_CON)
             Log.d("FistTest", "FirstConn..")
@@ -54,6 +53,11 @@ class ListWallpaperFragment : Fragment() {
         backImage = root.findViewById(R.id.backImage)
         favouriteImage = root.findViewById(R.id.favouriteBack)
         settingImage = root.findViewById(R.id.settingBack)
+
+        // Change image in case of arabic Language
+        if (ModelPreferencesManager.get<Boolean>(Constants.IS_FRENSH) == false) {
+            backImage.setImageResource(R.drawable.right_arrow)
+        }
 
         getWallpapers()
 
@@ -71,7 +75,6 @@ class ListWallpaperFragment : Fragment() {
 
         return root
     }
-
 
     fun getWallpapers() {
 
