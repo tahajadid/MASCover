@@ -24,7 +24,7 @@ class FavouriteListAdapter(
         private val imageWallpaper: ImageView = itemView.findViewById(R.id.imageWallpaper)
 
         fun bindView(item: Wallpaper, position: Int, context: Context?) {
-            WallpaperHelper.setImage(imageWallpaper, item.pathPoster.toString())
+            WallpaperHelper.setImage(imageWallpaper, item.pathPoster.toString(), context!!)
         }
     }
 
