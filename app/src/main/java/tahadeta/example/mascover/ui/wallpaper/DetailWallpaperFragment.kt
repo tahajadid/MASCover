@@ -88,7 +88,7 @@ class DetailWallpaperFragment : Fragment() {
 
         loading.visibility = View.GONE
 
-        WallpaperHelper.setImage(imageWallpaper, args.path4K)
+        WallpaperHelper.setImage(imageWallpaper, args.path4K, this.requireContext())
         fadeToUp(imagePhone, 70F, 1000)
 
         Handler().postDelayed({

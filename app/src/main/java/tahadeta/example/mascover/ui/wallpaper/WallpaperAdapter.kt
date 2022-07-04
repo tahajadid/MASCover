@@ -27,7 +27,7 @@ class WallpaperAdapter(
         private val imageWallpaper: ImageView = itemView.findViewById(R.id.imageWallpaper)
 
         fun bindView(item: Wallpaper, position: Int, context: Context?) {
-            WallpaperHelper.setImage(imageWallpaper, item.pathPoster.toString())
+            WallpaperHelper.setImage(imageWallpaper, item.pathPoster.toString(), context!!)
             Log.d("FERETJJD", "enter ==== ")
 
             val drawable1 = ContextCompat.getDrawable(
