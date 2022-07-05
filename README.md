@@ -8,4 +8,6 @@ the word MAS is the name of a Moroccan team, and the application developed to he
 
 <img src="/image_mas.png" width="600" height="450"/>
 
+<img src="/image_mas-3.png" width="600" height="450"/>
+
 <img src="/image_mas-2.png" width="600" height="450"/>
