@@ -139,6 +139,4 @@ class HomeFragment : Fragment() {
                 Log.d("FirestoreData", "Error = " + it.toString())
             }
     }
-
-
 }

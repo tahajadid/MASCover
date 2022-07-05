@@ -31,6 +31,7 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import tahadeta.example.mascover.R
 import tahadeta.example.mascover.util.Constants
+import tahadeta.example.mascover.util.ModelPreferencesManager
 import tahadeta.example.mascover.util.WallpaperHelper
 import java.io.File
 import java.io.IOException
@@ -46,6 +47,12 @@ class DetailWallpaperFragment : Fragment() {
     lateinit var imageWallpaper: ImageView
     lateinit var imagePhone: ImageView
     lateinit var imageTiger: ImageView
+
+    // For Demo
+    lateinit var okOne: TextView
+    lateinit var okTwo: TextView
+    lateinit var demoOneCl: ConstraintLayout
+    lateinit var demoTwoCl: ConstraintLayout
 
     lateinit var progressBar: ProgressBar
     lateinit var homeTv: TextView
@@ -86,6 +93,16 @@ class DetailWallpaperFragment : Fragment() {
         loading = root.findViewById(R.id.animationLoading)
         progressBar = root.findViewById(R.id.progressBar)
 
+        okOne = root.findViewById(R.id.okDemo_one)
+        okTwo = root.findViewById(R.id.okDemo_two)
+        demoOneCl = root.findViewById(R.id.demo_one_cl)
+        demoTwoCl = root.findViewById(R.id.demo_two_cl)
+
+        if (ModelPreferencesManager.get<Boolean>(Constants.DEMO_SHOW) == null) {
+            ModelPreferencesManager.put(true, Constants.DEMO_SHOW)
+            showDemoOne()
+        }
+
         loading.visibility = View.GONE
 
         WallpaperHelper.setImage(imageWallpaper, args.path4K, this.requireContext())
@@ -100,6 +117,33 @@ class DetailWallpaperFragment : Fragment() {
         initComponents()
 
         return root
+    }
+
+    private fun showDemoOne() {
+        demoOneCl.visibility = View.VISIBLE
+        fadeToUp(demoOneCl, 20F, 300)
+
+        okOne.setOnClickListener {
+            demoOneCl.visibility = View.GONE
+            showDemoTwo()
+        }
+        demoOneCl.setOnClickListener {
+            demoOneCl.visibility = View.GONE
+            showDemoTwo()
+        }
+
+    }
+
+    private fun showDemoTwo() {
+        demoTwoCl.visibility = View.VISIBLE
+        fadeToUp(demoTwoCl, 20F, 300)
+
+        okTwo.setOnClickListener {
+            demoTwoCl.visibility = View.GONE
+        }
+        demoTwoCl.setOnClickListener {
+            demoTwoCl.visibility = View.GONE
+        }
     }
 
     private fun initComponents() {
@@ -348,4 +392,15 @@ class DetailWallpaperFragment : Fragment() {
         // Animate the alpha value to 1F and set duration
         view.animate().alpha(1F).translationYBy(-spaceWithPixel).setDuration(duration)
     }
+
+    fun fadeToDown(view: View, spaceWithPixel: Float, duration: Long) {
+
+        // Set button alpha to the 0
+        view.alpha = 0F
+        view.translationY = -spaceWithPixel
+
+        // Animate the alpha value to 1F and set duration
+        view.animate().alpha(1F).translationYBy(spaceWithPixel).setDuration(duration)
+    }
+
 }

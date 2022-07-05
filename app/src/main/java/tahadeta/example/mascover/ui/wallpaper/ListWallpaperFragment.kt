@@ -92,7 +92,9 @@ class ListWallpaperFragment : Fragment() {
 
                     // hide animation
                     animationView.visibility = View.GONE
-
+                    listWallpapers.sortByDescending {
+                        it.numberDownload
+                    }
                     wallpaperAdapter = WallpaperAdapter(this.context, listWallpapers)
 
                     recyclerView.apply {
