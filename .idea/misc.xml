@@ -3,17 +3,29 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/bottom_arab_angle.xml" value="0.186" />
+        <entry key="app/src/main/res/drawable/bottom_cancel_angle.xml" value="0.1825" />
+        <entry key="app/src/main/res/drawable/bottom_one_angle_black.xml" value="0.187" />
         <entry key="app/src/main/res/drawable/bottom_rounded_bg.xml" value="0.232" />
+        <entry key="app/src/main/res/drawable/bottom_rounded_yellow_bg.xml" value="0.2375" />
+        <entry key="app/src/main/res/drawable/cancel_bottom_black.xml" value="0.2375" />
+        <entry key="app/src/main/res/drawable/custom_cercle_download.xml" value="0.2375" />
+        <entry key="app/src/main/res/drawable/custom_cercle_home.xml" value="0.2375" />
         <entry key="app/src/main/res/drawable/custom_choose_wallpaper.xml" value="0.231" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.169" />
+        <entry key="app/src/main/res/drawable/red_rounded_rectangle_popup.xml" value="0.2375" />
+        <entry key="app/src/main/res/drawable/yellow_rounded.xml" value="0.2375" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22056159420289856" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.165" />
         <entry key="app/src/main/res/layout/categorie_item.xml" value="0.22056159420289856" />
         <entry key="app/src/main/res/layout/fragment_detail_wallpaper.xml" value="0.22905575222439234" />
         <entry key="app/src/main/res/layout/fragment_favourite.xml" value="0.31064758300781253" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.644716375942888" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.6192528735632183" />
         <entry key="app/src/main/res/layout/fragment_list_wallpaper.xml" value="0.13854166666666667" />
-        <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.23496551513671876" />
+        <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.569422489541055" />
+        <entry key="app/src/main/res/layout/internet_popup_dialog.xml" value="0.22056159420289856" />
+        <entry key="app/src/main/res/layout/popup_dialog.xml" value="0.22056159420289856" />
+        <entry key="app/src/main/res/layout/update_popup_dialog.xml" value="0.17395833333333333" />
         <entry key="app/src/main/res/layout/wallpaper_item.xml" value="0.1" />
       </map>
     </option>
