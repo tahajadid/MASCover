@@ -15,9 +15,19 @@
     <string name="acceuil">Acceuil</string>
     <string name="lock">Verrouillage</string>
     <string name="both">Acceuil et Verrouillage</string>
-    <string name="choiceLangue">Choix de la langue</string>
+    <string name="choiceLangue">Langue de l\'application</string>
     <string name="goUpdate">Mettre à jour</string>
     <string name="newVersion">Nouvelle version sur le Store</string>
     <string name="cancel">Annuler</string>
+    <string name="noInternet">Vérifier votre connexion</string>
+    <string name="languages">Langues</string>
+    <string name="notification">Notifications</string>
+    <string name="notificationActive">Activer les notifications</string>
+    <string name="linkTelegram">Lien du groupe</string>
+    <string name="copy">Copier</string>
+    <string name="shareLink">Partager</string>
+    <string name="appInfo">Informations sur l\'application</string>
+    <string name="version">Version</string>
+    <string name="shareApp">Partager l\'application</string>
 
 </resources>

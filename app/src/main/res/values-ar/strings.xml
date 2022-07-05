@@ -15,9 +15,19 @@
     <string name="acceuil">شاشة الرئيسية</string>
     <string name="lock">شاشة القفل</string>
     <string name="both">الشاشة الرئيسية و القفل</string>
-    <string name="choiceLangue">تغيير اللغة</string>
+    <string name="choiceLangue">لغة التطبيق</string>
     <string name="goUpdate">تحديث التطبيق</string>
     <string name="newVersion">نسخة جديدة</string>
     <string name="cancel">إلغاء</string>
+    <string name="noInternet">"تحقق من اتصالك "</string>
+    <string name="languages">اللغات</string>
+    <string name="notification">"إشعارات "</string>
+    <string name="notificationActive">تفعيل إشعارات</string>
+    <string name="linkTelegram">"موقع المجموعة "</string>
+    <string name="copy">نسخ</string>
+    <string name="shareLink">"مشاركة  "</string>
+    <string name="appInfo">"معلومات التطبيق "</string>
+    <string name="version">إصدار</string>
+    <string name="shareApp">"شارك التطبيق "</string>
 
 </resources>

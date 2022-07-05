@@ -3,9 +3,13 @@ package tahadeta.example.mascover
 import android.app.Dialog
 import android.content.Context
 import android.content.res.Configuration
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -27,6 +31,7 @@ class MainActivity : AppCompatActivity() {
         lateinit var navController: NavController
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         localeDelegate.onCreate(this)
@@ -48,6 +53,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
     private fun showLanguePopup() {
         val dialog = Dialog(this)
         dialog.setContentView(R.layout.popup_dialog)
@@ -68,7 +74,7 @@ class MainActivity : AppCompatActivity() {
             dialog.dismiss()
         }
 
-        val width = resources.displayMetrics.widthPixels * 0.90
+        val width = resources.displayMetrics.widthPixels * 0.80
         val height = resources.displayMetrics.heightPixels * 0.40
 
         dialog.window?.setLayout(width.toInt(), height.toInt())

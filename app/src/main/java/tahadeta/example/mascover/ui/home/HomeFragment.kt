@@ -75,12 +75,11 @@ class HomeFragment : Fragment() {
         database.collection("version").document("version").get()
             .addOnCompleteListener {
                 val version = it.result!!["versionNumber"]
-                if (version!!.equals(actualVersion)) {
-                    if(!updateShown){
+                if (!version!!.equals(actualVersion)) {
+                    if (!updateShown) {
                         updateShown = true
                         openPopupUpdate(it.result!!["storeLink"].toString())
                     }
-
                 }
             }
     }
@@ -140,4 +139,6 @@ class HomeFragment : Fragment() {
                 Log.d("FirestoreData", "Error = " + it.toString())
             }
     }
+
+
 }

@@ -17,6 +17,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline" />
 
+
+    <ImageView
+        android:id="@+id/imageTiger"
+        android:layout_width="0dp"
+        android:layout_height="400dp"
+        android:alpha="0.1"
+        android:layout_marginEnd="-100dp"
+        android:scaleType="fitEnd"
+        android:src="@drawable/tiger_claw"
+        app:layout_constraintBottom_toBottomOf="@+id/view2"
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <TextView
         android:id="@+id/settingTitle"
         android:layout_width="wrap_content"
@@ -29,6 +41,377 @@
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline3" />
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/homeBack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/settingTitle">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="parent">
+
+            <Switch
+                android:id="@+id/switch_fr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintEnd_toStartOf="@+id/arab_tv"
+                app:layout_constraintTop_toTopOf="@+id/switch_ar"
+                tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+            <TextView
+                android:id="@+id/frensh_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:text="Français"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@+id/switch_fr"
+                app:layout_constraintEnd_toStartOf="@+id/switch_fr"
+                app:layout_constraintTop_toTopOf="@+id/switch_fr" />
+
+
+            <Switch
+                android:id="@+id/switch_ar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/langueChoice"
+                tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+            <TextView
+                android:id="@+id/arab_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:text="العربية"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@+id/switch_ar"
+                app:layout_constraintEnd_toStartOf="@+id/switch_ar"
+                app:layout_constraintTop_toTopOf="@+id/switch_ar" />
+
+            <TextView
+                android:id="@+id/langueChoice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:fontFamily="sans-serif"
+                android:text="@string/choiceLangue"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold|italic"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+                app:layout_constraintStart_toEndOf="@+id/imageView6"
+                app:layout_constraintTop_toTopOf="@+id/imageView6" />
+
+
+            <View
+                android:id="@+id/view14"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:layout_marginStart="10dp"
+                android:background="@color/main_yellow"
+                app:layout_constraintBottom_toBottomOf="@+id/langueChoice"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/langueChoice"
+                app:layout_constraintTop_toTopOf="@+id/langueChoice" />
+
+
+            <View
+                android:id="@+id/view8"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/gray_back"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textView3"
+                app:layout_constraintTop_toBottomOf="@+id/switch_ar" />
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/icon_language"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/languages"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@+id/switch_fr"
+                app:layout_constraintStart_toStartOf="@+id/langueChoice"
+                app:layout_constraintTop_toTopOf="@+id/switch_fr" />
+
+            <!-- Notification -->
+
+            <ImageView
+                android:id="@+id/imageViewNotif"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:padding="2dp"
+                android:src="@drawable/icon_notifications"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view8" />
+
+            <TextView
+                android:id="@+id/notificationLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:fontFamily="sans-serif"
+                android:text="@string/notification"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold|italic"
+                app:layout_constraintBottom_toBottomOf="@+id/imageViewNotif"
+                app:layout_constraintStart_toEndOf="@+id/imageViewNotif"
+                app:layout_constraintTop_toTopOf="@+id/imageViewNotif" />
+
+            <View
+                android:id="@+id/view13"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:layout_marginStart="10dp"
+                android:background="@color/main_yellow"
+                app:layout_constraintBottom_toBottomOf="@+id/notificationLabel"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/notificationLabel"
+                app:layout_constraintTop_toTopOf="@+id/notificationLabel" />
+
+
+            <View
+                android:id="@+id/view9"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/gray_back"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textView4"
+                app:layout_constraintTop_toBottomOf="@id/switch_notification" />
+
+            <Switch
+                android:id="@+id/switch_notification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/notificationLabel"
+                tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/notificationActive"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@+id/switch_notification"
+                app:layout_constraintStart_toStartOf="@+id/notificationLabel"
+                app:layout_constraintTop_toTopOf="@+id/switch_notification" />
+
+
+            <!-- Telegram -->
+
+            <ImageView
+                android:id="@+id/imageViewTlgrm"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/icon_telegram"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view9" />
+
+            <TextView
+                android:id="@+id/tlgrmLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:fontFamily="sans-serif"
+                android:text="Telegram"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold|italic"
+                app:layout_constraintBottom_toBottomOf="@+id/imageViewTlgrm"
+                app:layout_constraintStart_toEndOf="@+id/imageViewTlgrm"
+                app:layout_constraintTop_toTopOf="@+id/imageViewTlgrm" />
+
+            <View
+                android:id="@+id/view12"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:layout_marginStart="10dp"
+                android:background="@color/main_yellow"
+                app:layout_constraintBottom_toBottomOf="@+id/tlgrmLabel"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tlgrmLabel"
+                app:layout_constraintTop_toTopOf="@+id/tlgrmLabel" />
+
+
+            <ImageView
+                android:id="@+id/imageViewCopy"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:padding="2dp"
+                android:src="@drawable/icon_copy"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageViewTlgrm" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:text="@string/copy"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@+id/imageViewCopy"
+                app:layout_constraintEnd_toStartOf="@+id/imageViewCopy"
+                app:layout_constraintTop_toTopOf="@+id/imageViewCopy" />
+
+            <ImageView
+                android:id="@+id/imageViewShareTlgrm"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/icon_share_telegram"
+                app:layout_constraintEnd_toEndOf="@+id/switch_fr"
+                app:layout_constraintTop_toBottomOf="@+id/imageViewTlgrm" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:text="@string/shareLink"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@+id/imageViewShareTlgrm"
+                app:layout_constraintEnd_toStartOf="@+id/imageViewShareTlgrm"
+                app:layout_constraintTop_toTopOf="@+id/imageViewShareTlgrm" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/linkTelegram"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@+id/textView6"
+                app:layout_constraintStart_toStartOf="@+id/tlgrmLabel"
+                app:layout_constraintTop_toTopOf="@+id/textView6" />
+
+            <View
+                android:id="@+id/view10"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/gray_back"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textView7"
+                app:layout_constraintTop_toBottomOf="@id/textView7" />
+
+
+            <!-- Information -->
+
+            <ImageView
+                android:id="@+id/imageViewInformation"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/icon_app"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view10" />
+
+            <TextView
+                android:id="@+id/appLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:fontFamily="sans-serif"
+                android:text="@string/appInfo"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold|italic"
+                app:layout_constraintBottom_toBottomOf="@+id/imageViewInformation"
+                app:layout_constraintStart_toEndOf="@+id/imageViewInformation"
+                app:layout_constraintTop_toTopOf="@+id/imageViewInformation" />
+
+            <ImageView
+                android:id="@+id/imageViewShare"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:padding="2dp"
+                android:src="@drawable/icon_share"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageViewInformation" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:text="@string/shareApp"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@+id/imageViewShare"
+                app:layout_constraintEnd_toStartOf="@+id/imageViewShare"
+                app:layout_constraintTop_toTopOf="@+id/imageViewShare" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/version"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@+id/textView8"
+                app:layout_constraintStart_toStartOf="@+id/appLabel"
+                app:layout_constraintTop_toTopOf="@+id/textView8" />
+
+            <TextView
+                android:id="@+id/versionNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="1.0.0"
+                android:textColor="@color/gray"
+                app:layout_constraintBottom_toBottomOf="@+id/textView9"
+                app:layout_constraintStart_toEndOf="@+id/textView9"
+                app:layout_constraintTop_toTopOf="@+id/textView9" />
+
+            <View
+                android:id="@+id/view11"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:layout_marginStart="10dp"
+                android:background="@color/main_yellow"
+                app:layout_constraintBottom_toBottomOf="@+id/appLabel"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/appLabel"
+                app:layout_constraintTop_toTopOf="@+id/appLabel" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 
     <View
         android:layout_width="0dp"
@@ -161,34 +544,6 @@
         app:layout_constraintTop_toTopOf="@+id/settingBack"
         app:layout_constraintVertical_bias="0.0" />
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/animationLoading"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:padding="80dp"
-        app:layout_constraintBottom_toTopOf="@+id/homeBack"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view8"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/develop"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:elevation="20dp"
-        android:fontFamily="@font/mandarin_regular"
-        android:text="@string/develop"
-        android:textColor="@color/main_yellow"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/view6"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/animationLoading"
-        app:layout_constraintVertical_bias="0.8" />
 
     <ImageView
         android:id="@+id/imageView7"
@@ -201,69 +556,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/view7" />
 
-    <Switch
-        android:id="@+id/switch_fr"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/settingTitle" />
-
-    <TextView
-        android:id="@+id/frensh_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:text="Français"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/switch_fr"
-        app:layout_constraintEnd_toStartOf="@+id/switch_fr"
-        app:layout_constraintTop_toTopOf="@+id/switch_fr" />
 
 
-    <Switch
-        android:id="@+id/switch_ar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/switch_fr" />
-
-    <TextView
-        android:id="@+id/arab_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:text="العربية"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/switch_ar"
-        app:layout_constraintEnd_toStartOf="@+id/switch_ar"
-        app:layout_constraintTop_toTopOf="@+id/switch_ar" />
-
-    <TextView
-        android:id="@+id/langueChoice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:text="@string/choiceLangue"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:fontFamily="@font/mandarin_regular"
-        app:layout_constraintBottom_toBottomOf="@+id/switch_ar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/switch_fr" />
-
-
-    <View
-        android:id="@+id/view8"
-        android:layout_width="0dp"
-        android:layout_height="2dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:background="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/switch_ar" />
 </androidx.constraintlayout.widget.ConstraintLayout>
