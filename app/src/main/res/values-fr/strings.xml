@@ -29,5 +29,9 @@
     <string name="appInfo">Informations sur l\'application</string>
     <string name="version">Version</string>
     <string name="shareApp">Partager l\'application</string>
+    <string name="download">Télécharger l\'image</string>
+    <string name="demoTwo">Définir en tant que fond d\'écran</string>
+    <string name="demoOne">Télécharger l\'image</string>
+    <string name="ok">Ok</string>
 
 </resources>

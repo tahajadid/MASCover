@@ -29,5 +29,9 @@
     <string name="appInfo">"معلومات التطبيق "</string>
     <string name="version">إصدار</string>
     <string name="shareApp">"شارك التطبيق "</string>
+    <string name="download">"تحميل الصورة "</string>
+    <string name="demoTwo">وظعها كخلفية</string>
+    <string name="demoOne">"تحميل الصورة "</string>
+    <string name="ok">نعم</string>
 
 </resources>
