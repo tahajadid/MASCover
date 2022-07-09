@@ -3,8 +3,6 @@ package tahadeta.example.mascover
 import android.app.Dialog
 import android.content.Context
 import android.content.res.Configuration
-import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -53,7 +51,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
     private fun showLanguePopup() {
         val dialog = Dialog(this)
         dialog.setContentView(R.layout.popup_dialog)
@@ -63,10 +60,12 @@ class MainActivity : AppCompatActivity() {
 
         arBtn.setOnClickListener {
             updateLocale(Locales.Arabic)
+            ModelPreferencesManager.put(false, Constants.IS_FRENSH)
             dialog.dismiss()
         }
 
         frBtn.setOnClickListener {
+            ModelPreferencesManager.put(true, Constants.IS_FRENSH)
             dialog.dismiss()
         }
 
@@ -75,7 +74,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         val width = resources.displayMetrics.widthPixels * 0.80
-        val height = resources.displayMetrics.heightPixels * 0.40
+        val height = resources.displayMetrics.heightPixels * 0.50
 
         dialog.window?.setLayout(width.toInt(), height.toInt())
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)

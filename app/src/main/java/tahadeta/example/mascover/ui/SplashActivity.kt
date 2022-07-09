@@ -79,7 +79,7 @@ class SplashActivity : AppCompatActivity() {
         }
 
         val width = resources.displayMetrics.widthPixels * 0.80
-        val height = resources.displayMetrics.heightPixels * 0.40
+        val height = resources.displayMetrics.heightPixels * 0.50
 
         dialog.window?.setLayout(width.toInt(), height.toInt())
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
