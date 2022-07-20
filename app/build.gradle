@@ -15,8 +15,8 @@ android {
         applicationId "tahadeta.example.mascover"
         minSdk 21
         targetSdk 32
-        versionCode 4
-        versionName "0.2.0"
+        versionCode 7
+        versionName "1.0.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -86,5 +86,7 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.12.0'
     implementation 'com.github.bumptech.glide:compiler:4.12.0'
 
+    // Facebook Shimmer Effect
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
 
 }
