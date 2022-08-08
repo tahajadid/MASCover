@@ -317,7 +317,7 @@ class DetailWallpaperFragment : Fragment() {
                 }
             }
         } else {
-            Toast.makeText(activity, Constants.JUST_DOWNLOAD_FR, Toast.LENGTH_LONG).show()
+            Toast.makeText(activity, Constants.JUST_DOWNLOAD_FR, Toast.LENGTH_SHORT).show()
         }
     }
 
