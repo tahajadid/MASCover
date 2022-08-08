@@ -8,7 +8,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -29,6 +32,7 @@ class HomeFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var homeBack: View
     private lateinit var favouriteBack: View
+    private lateinit var flashImage: ImageView
     private lateinit var settingBack: View
     lateinit var animationView: LottieAnimationView
 
@@ -49,6 +53,7 @@ class HomeFragment : Fragment() {
         favouriteBack = root.findViewById(R.id.favouriteBack)
         settingBack = root.findViewById(R.id.settingBack)
         animationView = root.findViewById(R.id.animationLoading)
+        flashImage = root.findViewById(R.id.flash_iv)
 
         initComponent()
 
@@ -61,12 +66,23 @@ class HomeFragment : Fragment() {
         getCtegories()
         getApplicationVersion()
 
+        val window: Window = requireActivity().window
+
+        if (window != null) {
+            window.setStatusBarColor(ContextCompat.getColor(requireActivity(), R.color.black))
+            window.navigationBarColor = ContextCompat.getColor(requireActivity(), R.color.black)
+        }
+
         settingBack.setOnClickListener {
             findNavController().navigate(R.id.settingFragment)
         }
 
         favouriteBack.setOnClickListener {
             findNavController().navigate(R.id.favouriteFragment)
+        }
+
+        flashImage.setOnClickListener {
+            findNavController().navigate(R.id.yellowScreenFragment)
         }
     }
 

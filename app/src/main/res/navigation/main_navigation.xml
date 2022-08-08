@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_homeFragment_to_favouriteFragment"
             app:destination="@id/favouriteFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_yellowScreenFragment"
+            app:destination="@id/yellowScreenFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingFragment"
@@ -57,4 +60,9 @@
         <argument android:name="path4K"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/yellowScreenFragment"
+        android:name="tahadeta.example.mascover.ui.home.YellowScreenFragment"
+        android:label="fragment_yellow_screen"
+        tools:layout="@layout/fragment_yellow_screen" />
 </navigation>

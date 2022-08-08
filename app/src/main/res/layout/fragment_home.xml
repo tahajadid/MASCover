@@ -201,5 +201,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/view7" />
 
+    <ImageView
+        android:id="@+id/flash_iv"
+        android:layout_width="80dp"
+        android:layout_height="0dp"
+        android:padding="10dp"
+        android:src="@drawable/torch_icon"
+        app:layout_constraintBottom_toTopOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view7" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

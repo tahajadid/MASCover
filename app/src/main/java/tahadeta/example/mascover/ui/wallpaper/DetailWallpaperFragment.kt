@@ -391,5 +391,4 @@ class DetailWallpaperFragment : Fragment() {
         // Animate the alpha value to 1F and set duration
         view.animate().alpha(1F).translationYBy(-spaceWithPixel).setDuration(duration)
     }
-
 }
