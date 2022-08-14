@@ -32,6 +32,8 @@
     <string name="download">"تحميل الصورة "</string>
     <string name="demoTwo">وظعها كخلفية</string>
     <string name="demoOne">"تحميل الصورة "</string>
+    <string name="flashOn">قم بتشغيل الفلاش</string>
+    <string name="screenOn">قم بتشغيل شاشة صفراء</string>
     <string name="ok">نعم</string>
 
 </resources>

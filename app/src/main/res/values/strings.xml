@@ -31,6 +31,8 @@
     <string name="download">Télécharger l\'image</string>
     <string name="demoTwo">Définir en tant que fond d\'écran</string>
     <string name="demoOne">Télécharger l\'image</string>
+    <string name="flashOn">Allumez le Flash</string>
+    <string name="screenOn">Affichez un écran jaune</string>
     <string name="ok">Ok</string>
 
 </resources>

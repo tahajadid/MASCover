@@ -1,9 +1,14 @@
 package tahadeta.example.mascover.ui.home
 
 import android.app.Dialog
+import android.content.Context
 import android.content.Intent
+import android.hardware.camera2.CameraAccessException
+import android.hardware.camera2.CameraManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +16,9 @@ import android.view.ViewGroup
 import android.view.Window
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -21,6 +28,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 import tahadeta.example.mascover.BuildConfig
 import tahadeta.example.mascover.R
 import tahadeta.example.mascover.data.Categorie
+import tahadeta.example.mascover.util.Constants
+import tahadeta.example.mascover.util.ModelPreferencesManager
 import tahadeta.example.mascover.util.updateShown
 
 class HomeFragment : Fragment() {
@@ -33,8 +42,19 @@ class HomeFragment : Fragment() {
     private lateinit var homeBack: View
     private lateinit var favouriteBack: View
     private lateinit var flashImage: ImageView
+    private lateinit var yellowImage: ImageView
     private lateinit var settingBack: View
     lateinit var animationView: LottieAnimationView
+
+    // For Demo
+    lateinit var okOne: TextView
+    lateinit var okTwo: TextView
+    lateinit var demoOneCl: ConstraintLayout
+    lateinit var demoTwoCl: ConstraintLayout
+
+    var flashIsOne = false
+
+    private lateinit var cameraId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,6 +74,18 @@ class HomeFragment : Fragment() {
         settingBack = root.findViewById(R.id.settingBack)
         animationView = root.findViewById(R.id.animationLoading)
         flashImage = root.findViewById(R.id.flash_iv)
+        yellowImage = root.findViewById(R.id.yellow_iv)
+        demoOneCl = root.findViewById(R.id.demo_three_cl)
+        demoTwoCl = root.findViewById(R.id.demo_four_cl)
+        okOne = root.findViewById(R.id.okDemo_one)
+        okTwo = root.findViewById(R.id.okDemo_three)
+
+        Handler().postDelayed({
+            if (ModelPreferencesManager.get<Boolean>(Constants.DEMO_SHOW_FLASH) == null) {
+                ModelPreferencesManager.put(true, Constants.DEMO_SHOW_FLASH)
+                showDemoOne()
+            }
+        }, 2000)
 
         initComponent()
 
@@ -67,6 +99,14 @@ class HomeFragment : Fragment() {
         getApplicationVersion()
 
         val window: Window = requireActivity().window
+
+        var cameraManager = requireActivity().getSystemService(Context.CAMERA_SERVICE) as CameraManager
+
+        try {
+            cameraId = cameraManager.cameraIdList[0]
+        } catch (e: CameraAccessException) {
+            e.printStackTrace()
+        }
 
         if (window != null) {
             window.setStatusBarColor(ContextCompat.getColor(requireActivity(), R.color.black))
@@ -82,7 +122,56 @@ class HomeFragment : Fragment() {
         }
 
         flashImage.setOnClickListener {
+
+            if (flashIsOne) {
+                flashIsOne = false
+                flashImage.setImageResource(R.drawable.flash_empty)
+                try {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        cameraManager.setTorchMode(cameraId, false)
+                    }
+                } catch (e: CameraAccessException) {
+                    e.printStackTrace()
+                }
+            } else {
+                flashIsOne = true
+                flashImage.setImageResource(R.drawable.flash_fill)
+                try {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        cameraManager.setTorchMode(cameraId, true)
+                    }
+                } catch (e: CameraAccessException) {
+                    e.printStackTrace()
+                }
+            }
+        }
+
+        yellowImage.setOnClickListener {
             findNavController().navigate(R.id.yellowScreenFragment)
+        }
+    }
+
+    private fun showDemoOne() {
+        demoOneCl.visibility = View.VISIBLE
+
+        okOne.setOnClickListener {
+            demoOneCl.visibility = View.GONE
+            showDemoTwo()
+        }
+        demoOneCl.setOnClickListener {
+            demoOneCl.visibility = View.GONE
+            showDemoTwo()
+        }
+    }
+
+    private fun showDemoTwo() {
+        demoTwoCl.visibility = View.VISIBLE
+
+        okTwo.setOnClickListener {
+            demoTwoCl.visibility = View.GONE
+        }
+        demoTwoCl.setOnClickListener {
+            demoTwoCl.visibility = View.GONE
         }
     }
 
@@ -94,7 +183,9 @@ class HomeFragment : Fragment() {
                 if (!version!!.equals(actualVersion)) {
                     if (!updateShown) {
                         updateShown = true
-                        openPopupUpdate(it.result!!["storeLink"].toString())
+                        Handler().postDelayed({
+                            openPopupUpdate(it.result!!["storeLink"].toString())
+                        }, 2000)
                     }
                 }
             }
