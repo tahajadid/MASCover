@@ -317,7 +317,7 @@ class DetailWallpaperFragment : Fragment() {
                 }
             }
         } else {
-            Toast.makeText(activity, Constants.JUST_DOWNLOAD_FR, Toast.LENGTH_LONG).show()
+            Toast.makeText(activity, Constants.JUST_DOWNLOAD_FR, Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -391,5 +391,4 @@ class DetailWallpaperFragment : Fragment() {
         // Animate the alpha value to 1F and set duration
         view.animate().alpha(1F).translationYBy(-spaceWithPixel).setDuration(duration)
     }
-
 }

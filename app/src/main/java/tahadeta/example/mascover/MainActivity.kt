@@ -11,6 +11,7 @@ import android.util.Log
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.zeugmasolutions.localehelper.LocaleHelper
@@ -36,6 +37,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         localeDelegate.onCreate(this)
         setContentView(R.layout.activity_main)
+
+        window.navigationBarColor = ContextCompat.getColor(this, R.color.black)
 
         navController =
             Navigation.findNavController(this, R.id.nav_host_fragment)

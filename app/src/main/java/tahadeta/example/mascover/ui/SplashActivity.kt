@@ -10,10 +10,12 @@ import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.View
+import android.view.Window
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import tahadeta.example.mascover.MainActivity
 import tahadeta.example.mascover.R
 
@@ -25,6 +27,11 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+
+        val window: Window = this.window
+        if (window != null) {
+            window.navigationBarColor = ContextCompat.getColor(this, R.color.black)
+        }
 
         Handler().postDelayed({
 
