@@ -14,16 +14,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
+import android.widget.Button
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
+import com.facebook.ads.AdSettings
+import com.facebook.ads.AdSize
+import com.facebook.ads.AdView
 import com.google.firebase.firestore.FirebaseFirestore
 import tahadeta.example.mascover.BuildConfig
 import tahadeta.example.mascover.R
@@ -45,6 +49,7 @@ class HomeFragment : Fragment() {
     private lateinit var yellowImage: ImageView
     private lateinit var settingBack: View
     lateinit var animationView: LottieAnimationView
+    lateinit var adView: AdView
 
     // For Demo
     lateinit var okOne: TextView
@@ -80,6 +85,13 @@ class HomeFragment : Fragment() {
         okOne = root.findViewById(R.id.okDemo_one)
         okTwo = root.findViewById(R.id.okDemo_three)
 
+        val adContainer = root.findViewById<View>(R.id.banner_container) as LinearLayout
+
+        adView = AdView(requireContext(), "602184014891911_602307324879580", AdSize.BANNER_HEIGHT_50)
+
+        adContainer.addView(adView)
+        adView.loadAd()
+
         Handler().postDelayed({
             if (ModelPreferencesManager.get<Boolean>(Constants.DEMO_SHOW_FLASH) == null) {
                 ModelPreferencesManager.put(true, Constants.DEMO_SHOW_FLASH)
@@ -90,6 +102,13 @@ class HomeFragment : Fragment() {
         initComponent()
 
         return root
+    }
+
+    override fun onDestroy() {
+        if (adView != null) {
+            adView.destroy()
+        }
+        super.onDestroy()
     }
 
     private fun initComponent() {

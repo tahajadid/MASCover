@@ -15,8 +15,8 @@ android {
         applicationId "tahadeta.example.mascover"
         minSdk 21
         targetSdk 32
-        versionCode 8
-        versionName "1.1.1"
+        versionCode 11
+        versionName "1.2.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -88,5 +88,13 @@ dependencies {
 
     // Facebook Shimmer Effect
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
+
+    // Facebook audience
+    implementation 'com.facebook.android:audience-network-sdk:6.+'
+
+    implementation("androidx.ads:ads-identifier:1.0.0-alpha01")
+
+    // Used for the calls to addCallback() in the snippets on this page.
+    implementation 'com.google.guava:guava:28.0-android'
 
 }

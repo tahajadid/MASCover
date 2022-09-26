@@ -41,6 +41,7 @@ class DetailWallpaperFragment : Fragment() {
     private val args by navArgs<DetailWallpaperFragmentArgs>()
     lateinit var setWallpaperView: View
     lateinit var likeImage: ImageView
+    lateinit var progressBarImage: ProgressBar
     lateinit var dislikeImage: ImageView
     lateinit var downloadVew: View
     var bitmapLast: Bitmap? = null
@@ -98,6 +99,8 @@ class DetailWallpaperFragment : Fragment() {
         demoOneCl = root.findViewById(R.id.demo_one_cl)
         demoTwoCl = root.findViewById(R.id.demo_two_cl)
 
+        progressBarImage = root.findViewById(R.id.progressBarImage)
+
         if (ModelPreferencesManager.get<Boolean>(Constants.DEMO_SHOW) == null) {
             ModelPreferencesManager.put(true, Constants.DEMO_SHOW)
             showDemoOne()
@@ -105,7 +108,7 @@ class DetailWallpaperFragment : Fragment() {
 
         loading.visibility = View.GONE
 
-        WallpaperHelper.setImage(imageWallpaper, args.path4K, this.requireContext())
+        WallpaperHelper.setImage(imageWallpaper, args.path4K, this.requireContext(),progressBarImage)
         fadeToUp(imagePhone, 70F, 1000)
 
         Handler().postDelayed({
