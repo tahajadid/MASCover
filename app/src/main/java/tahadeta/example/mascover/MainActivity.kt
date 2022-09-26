@@ -1,19 +1,23 @@
 package tahadeta.example.mascover
 
+import com.google.common.util.concurrent.Futures.addCallback
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Context
 import android.content.res.Configuration
-import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
+import androidx.ads.identifier.AdvertisingIdClient
+import androidx.ads.identifier.AdvertisingIdInfo
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import com.facebook.ads.*
+import com.google.common.util.concurrent.FutureCallback
 import com.zeugmasolutions.localehelper.LocaleHelper
 import com.zeugmasolutions.localehelper.LocaleHelperActivityDelegate
 import com.zeugmasolutions.localehelper.LocaleHelperActivityDelegateImpl
@@ -21,8 +25,11 @@ import com.zeugmasolutions.localehelper.Locales
 import tahadeta.example.mascover.util.Constants
 import tahadeta.example.mascover.util.ModelPreferencesManager
 import java.util.*
+import java.util.concurrent.Executors
 
 class MainActivity : AppCompatActivity() {
+
+    private val TAG: String = "MainActivity::class.java"
 
     private val localeDelegate: LocaleHelperActivityDelegate = LocaleHelperActivityDelegateImpl()
 
@@ -32,11 +39,14 @@ class MainActivity : AppCompatActivity() {
         lateinit var navController: NavController
     }
 
+    @SuppressLint("LongLogTag")
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         localeDelegate.onCreate(this)
         setContentView(R.layout.activity_main)
+
+        AudienceNetworkAds.initialize(this)
 
         window.navigationBarColor = ContextCompat.getColor(this, R.color.black)
 
@@ -56,6 +66,35 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun determineAdvertisingInfo() {
+        if (AdvertisingIdClient.isAdvertisingIdProviderAvailable(this)) {
+            val advertisingIdInfoListenableFuture =
+                AdvertisingIdClient.getAdvertisingIdInfo(applicationContext)
+
+            addCallback(advertisingIdInfoListenableFuture,
+                object : FutureCallback<AdvertisingIdInfo> {
+                    override fun onSuccess(adInfo: AdvertisingIdInfo?) {
+                        val id: String = adInfo?.id!!
+                        val providerPackageName: String = adInfo?.providerPackageName
+                        Log.d("MY_APP_TAG", "id =  "+id)
+
+                    }
+
+                    // Any exceptions thrown by getAdvertisingIdInfo()
+                    // cause this method to be called.
+                    override fun onFailure(t: Throwable) {
+                        Log.e("MY_APP_TAG",
+                            "Failed to connect to Advertising ID provider.")
+                        // Try to connect to the Advertising ID provider again or fall
+                        // back to an ad solution that doesn't require using the
+                        // Advertising ID library.
+                    }
+                }, Executors.newSingleThreadExecutor())
+        } else {
+            // The Advertising ID client library is unavailable. Use a different
+            // library to perform any required ad use cases.
+        }
+    }
 
     private fun showLanguePopup() {
         val dialog = Dialog(this)

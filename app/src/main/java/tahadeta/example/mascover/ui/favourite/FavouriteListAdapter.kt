@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.ProgressBar
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import tahadeta.example.mascover.R
@@ -22,9 +23,10 @@ class FavouriteListAdapter(
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         private val imageWallpaper: ImageView = itemView.findViewById(R.id.imageWallpaper)
+        private val progressBar: ProgressBar = itemView.findViewById(R.id.progressBar)
 
         fun bindView(item: Wallpaper, position: Int, context: Context?) {
-            WallpaperHelper.setImage(imageWallpaper, item.pathPoster.toString(), context!!)
+            WallpaperHelper.setImage(imageWallpaper, item.pathPoster.toString(), context!!, progressBar)
         }
     }
 

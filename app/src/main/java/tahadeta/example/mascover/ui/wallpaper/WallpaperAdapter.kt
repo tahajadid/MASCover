@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.ProgressBar
 import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -25,9 +26,11 @@ class WallpaperAdapter(
 
         private val imageAddFavourite: ImageView = itemView.findViewById(R.id.addFavouriteImage)
         private val imageWallpaper: ImageView = itemView.findViewById(R.id.imageWallpaper)
+        private val progressBar: ProgressBar = itemView.findViewById(R.id.progressBar)
+
 
         fun bindView(item: Wallpaper, position: Int, context: Context?) {
-            WallpaperHelper.setImage(imageWallpaper, item.pathPoster.toString(), context!!)
+            WallpaperHelper.setImage(imageWallpaper, item.pathPoster.toString(), context!!,progressBar)
             Log.d("FERETJJD", "enter ==== ")
 
             val drawable1 = ContextCompat.getDrawable(

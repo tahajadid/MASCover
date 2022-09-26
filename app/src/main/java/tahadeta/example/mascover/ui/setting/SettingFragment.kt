@@ -8,12 +8,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.Switch
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.facebook.ads.AdSize
+import com.facebook.ads.AdView
 import com.zeugmasolutions.localehelper.LocaleHelperActivityDelegate
 import com.zeugmasolutions.localehelper.LocaleHelperActivityDelegateImpl
 import com.zeugmasolutions.localehelper.Locales
@@ -23,7 +22,6 @@ import tahadeta.example.mascover.util.Constants
 import tahadeta.example.mascover.util.Constants.LINK_STORE
 import tahadeta.example.mascover.util.Constants.LINK_TELEGRAM
 import tahadeta.example.mascover.util.ModelPreferencesManager
-
 
 class SettingFragment : Fragment() {
 
@@ -37,6 +35,7 @@ class SettingFragment : Fragment() {
     lateinit var copyTlgrmImage: ImageView
     lateinit var shareAppImage: ImageView
     lateinit var versionNumber: TextView
+    lateinit var adView: AdView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,6 +63,13 @@ class SettingFragment : Fragment() {
 
         // Set the version number
         versionNumber.setText(BuildConfig.VERSION_NAME)
+
+        val adContainer = root.findViewById<View>(R.id.banner_container) as LinearLayout
+
+        adView = AdView(requireContext(), "602184014891911_602185281558451", AdSize.BANNER_HEIGHT_50)
+
+        adContainer.addView(adView)
+        adView.loadAd()
 
         // Share app link
         shareAppImage.setOnClickListener {
