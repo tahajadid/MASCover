@@ -35,5 +35,7 @@
     <string name="flashOn">قم بتشغيل الفلاش</string>
     <string name="screenOn">قم بتشغيل شاشة صفراء</string>
     <string name="ok">نعم</string>
+    <string name="error">نعتذر لقد حصل خطأ ما</string>
+    <string name="backHome">العودة الى الرئيسية</string>
 
 </resources>

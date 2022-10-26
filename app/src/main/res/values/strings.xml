@@ -34,5 +34,7 @@
     <string name="flashOn">Allumez le Flash</string>
     <string name="screenOn">Affichez un écran jaune</string>
     <string name="ok">Ok</string>
+    <string name="error">Désolé une erreur s\'est produite</string>
+    <string name="backHome">Revenir à l\'acceuil</string>
 
 </resources>
