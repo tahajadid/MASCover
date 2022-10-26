@@ -14,10 +14,13 @@
         <entry key="app/src/main/res/drawable/custom_choose_wallpaper.xml" value="0.231" />
         <entry key="app/src/main/res/drawable/demo_black_bg.xml" value="0.2375" />
         <entry key="app/src/main/res/drawable/demo_white_bg.xml" value="0.2375" />
+        <entry key="app/src/main/res/drawable/ic_baseline_error_outline_24.xml" value="0.1965" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.169" />
         <entry key="app/src/main/res/drawable/red_rounded_rectangle_popup.xml" value="0.2375" />
         <entry key="app/src/main/res/drawable/top_rounded_bg.xml" value="0.1725" />
         <entry key="app/src/main/res/drawable/yellow_rounded.xml" value="0.2375" />
+        <entry key="app/src/main/res/layout/activity_crash.xml" value="0.21603260869565216" />
+        <entry key="app/src/main/res/layout/activity_crash2.xml" value="0.21603260869565216" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22056159420289856" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.165" />
         <entry key="app/src/main/res/layout/categorie_item.xml" value="0.22056159420289856" />
