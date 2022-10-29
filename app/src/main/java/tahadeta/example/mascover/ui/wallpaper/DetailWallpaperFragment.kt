@@ -22,6 +22,7 @@ import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.airbnb.lottie.LottieAnimationView
 import com.google.firebase.firestore.DocumentReference
@@ -45,6 +46,7 @@ class DetailWallpaperFragment : Fragment() {
     lateinit var dislikeImage: ImageView
     lateinit var downloadVew: View
     var bitmapLast: Bitmap? = null
+    lateinit var backImage: ImageView
     lateinit var imageWallpaper: ImageView
     lateinit var imagePhone: ImageView
     lateinit var imageTiger: ImageView
@@ -93,6 +95,7 @@ class DetailWallpaperFragment : Fragment() {
         viewloading = root.findViewById(R.id.viewloading)
         loading = root.findViewById(R.id.animationLoading)
         progressBar = root.findViewById(R.id.progressBar)
+        backImage = root.findViewById(R.id.backImage)
 
         okOne = root.findViewById(R.id.okDemo_one)
         okTwo = root.findViewById(R.id.okDemo_two)
@@ -104,6 +107,13 @@ class DetailWallpaperFragment : Fragment() {
         if (ModelPreferencesManager.get<Boolean>(Constants.DEMO_SHOW) == null) {
             ModelPreferencesManager.put(true, Constants.DEMO_SHOW)
             showDemoOne()
+        }
+
+        if (ModelPreferencesManager.get<Boolean>(Constants.IS_FRENSH) == false) {
+            backImage.setImageResource(R.drawable.right_arrow)
+        }
+        backImage.setOnClickListener {
+            findNavController().navigateUp()
         }
 
         loading.visibility = View.GONE
