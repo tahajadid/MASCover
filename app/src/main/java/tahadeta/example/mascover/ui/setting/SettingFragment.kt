@@ -39,7 +39,7 @@ class SettingFragment : Fragment() {
     lateinit var copyTlgrmImage: ImageView
     lateinit var shareAppImage: ImageView
     lateinit var versionNumber: TextView
-    lateinit var adView: AdView
+    //lateinit var adView: AdView
     private lateinit var flashImage: ImageView
     private lateinit var yellowImage: ImageView
     var flashIsOne = false
@@ -77,12 +77,10 @@ class SettingFragment : Fragment() {
         // Set the version number
         versionNumber.setText(BuildConfig.VERSION_NAME)
 
-        val adContainer = root.findViewById<View>(R.id.banner_container) as LinearLayout
-
-        adView = AdView(requireContext(), "602184014891911_602185281558451", AdSize.BANNER_HEIGHT_50)
-
-        adContainer.addView(adView)
-        adView.loadAd()
+        //val adContainer = root.findViewById<View>(R.id.banner_container) as LinearLayout
+        //adView = AdView(requireContext(), "602184014891911_602185281558451", AdSize.BANNER_HEIGHT_50)
+        //adContainer.addView(adView)
+        //adView.loadAd()
 
         // Share app link
         shareAppImage.setOnClickListener {

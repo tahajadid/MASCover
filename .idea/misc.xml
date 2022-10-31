@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/bottom_arab_angle.xml" value="0.186" />
         <entry key="app/src/main/res/drawable/bottom_cancel_angle.xml" value="0.1825" />
         <entry key="app/src/main/res/drawable/bottom_one_angle_black.xml" value="0.187" />

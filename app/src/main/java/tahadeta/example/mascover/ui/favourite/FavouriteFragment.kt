@@ -29,7 +29,7 @@ class FavouriteFragment : Fragment() {
     lateinit var emptyTextView: TextView
     lateinit var favouriteListAdapter: FavouriteListAdapter
     private lateinit var recyclerView: RecyclerView
-    lateinit var adView: AdView
+    //lateinit var adView: AdView
     private lateinit var flashImage: ImageView
     private lateinit var yellowImage: ImageView
     var flashIsOne = false
@@ -55,12 +55,10 @@ class FavouriteFragment : Fragment() {
         flashImage = root.findViewById(R.id.flash_iv)
         yellowImage = root.findViewById(R.id.yellow_iv)
 
-        val adContainer = root.findViewById<View>(R.id.banner_container) as LinearLayout
-
-        adView = AdView(requireContext(), "602184014891911_602185281558451", AdSize.BANNER_HEIGHT_50)
-
-        adContainer.addView(adView)
-        adView.loadAd()
+        //val adContainer = root.findViewById<View>(R.id.banner_container) as LinearLayout
+        //adView = AdView(requireContext(), "602184014891911_602185281558451", AdSize.BANNER_HEIGHT_50)
+        //adContainer.addView(adView)
+        //adView.loadAd()
 
         settingImage.setOnClickListener {
             findNavController().navigate(R.id.settingFragment)
