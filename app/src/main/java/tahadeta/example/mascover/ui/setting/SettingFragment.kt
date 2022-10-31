@@ -2,8 +2,12 @@ package tahadeta.example.mascover.ui.setting
 
 import android.content.ClipData
 import android.content.ClipboardManager
+import android.content.Context
 import android.content.Context.CLIPBOARD_SERVICE
 import android.content.Intent
+import android.hardware.camera2.CameraAccessException
+import android.hardware.camera2.CameraManager
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -35,7 +39,11 @@ class SettingFragment : Fragment() {
     lateinit var copyTlgrmImage: ImageView
     lateinit var shareAppImage: ImageView
     lateinit var versionNumber: TextView
-    lateinit var adView: AdView
+    //lateinit var adView: AdView
+    private lateinit var flashImage: ImageView
+    private lateinit var yellowImage: ImageView
+    var flashIsOne = false
+    private lateinit var cameraId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,15 +69,18 @@ class SettingFragment : Fragment() {
         shareAppImage = root.findViewById(R.id.imageViewShare)
         versionNumber = root.findViewById(R.id.versionNumber)
 
+        flashImage = root.findViewById(R.id.flash_iv)
+        yellowImage = root.findViewById(R.id.yellow_iv)
+
+        initFlash()
+
         // Set the version number
         versionNumber.setText(BuildConfig.VERSION_NAME)
 
-        val adContainer = root.findViewById<View>(R.id.banner_container) as LinearLayout
-
-        adView = AdView(requireContext(), "602184014891911_602185281558451", AdSize.BANNER_HEIGHT_50)
-
-        adContainer.addView(adView)
-        adView.loadAd()
+        //val adContainer = root.findViewById<View>(R.id.banner_container) as LinearLayout
+        //adView = AdView(requireContext(), "602184014891911_602185281558451", AdSize.BANNER_HEIGHT_50)
+        //adContainer.addView(adView)
+        //adView.loadAd()
 
         // Share app link
         shareAppImage.setOnClickListener {
@@ -155,5 +166,43 @@ class SettingFragment : Fragment() {
         }
 
         return root
+    }
+
+    private fun initFlash() {
+        var cameraManager = requireActivity().getSystemService(Context.CAMERA_SERVICE) as CameraManager
+        try {
+            cameraId = cameraManager.cameraIdList[0]
+        } catch (e: CameraAccessException) {
+            e.printStackTrace()
+        }
+
+        flashImage.setOnClickListener {
+
+            if (flashIsOne) {
+                flashIsOne = false
+                flashImage.setImageResource(R.drawable.flash_empty)
+                try {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        cameraManager.setTorchMode(cameraId, false)
+                    }
+                } catch (e: CameraAccessException) {
+                    e.printStackTrace()
+                }
+            } else {
+                flashIsOne = true
+                flashImage.setImageResource(R.drawable.flash_fill)
+                try {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        cameraManager.setTorchMode(cameraId, true)
+                    }
+                } catch (e: CameraAccessException) {
+                    e.printStackTrace()
+                }
+            }
+        }
+
+        yellowImage.setOnClickListener {
+            findNavController().navigate(R.id.yellowScreenFragment)
+        }
     }
 }

@@ -49,7 +49,7 @@ class HomeFragment : Fragment() {
     private lateinit var yellowImage: ImageView
     private lateinit var settingBack: View
     lateinit var animationView: LottieAnimationView
-    lateinit var adView: AdView
+    //lateinit var adView: AdView
 
     // For Demo
     lateinit var okOne: TextView
@@ -85,12 +85,10 @@ class HomeFragment : Fragment() {
         okOne = root.findViewById(R.id.okDemo_one)
         okTwo = root.findViewById(R.id.okDemo_three)
 
-        val adContainer = root.findViewById<View>(R.id.banner_container) as LinearLayout
-
-        adView = AdView(requireContext(), "602184014891911_602307324879580", AdSize.BANNER_HEIGHT_50)
-
-        adContainer.addView(adView)
-        adView.loadAd()
+        // val adContainer = root.findViewById<View>(R.id.banner_container) as LinearLayout
+        // adView = AdView(requireContext(), "602184014891911_602307324879580", AdSize.BANNER_HEIGHT_50)
+        // adContainer.addView(adView)
+        // adView.loadAd()
 
         Handler().postDelayed({
             if (ModelPreferencesManager.get<Boolean>(Constants.DEMO_SHOW_FLASH) == null) {
@@ -105,16 +103,18 @@ class HomeFragment : Fragment() {
     }
 
     override fun onDestroy() {
+        /*
         if (adView != null) {
             adView.destroy()
         }
+         */
         super.onDestroy()
     }
 
     private fun initComponent() {
 
         listCategories = ArrayList()
-        getCtegories()
+        getCategories()
         getApplicationVersion()
 
         val window: Window = requireActivity().window
@@ -238,7 +238,7 @@ class HomeFragment : Fragment() {
         dialog.show()
     }
 
-    fun getCtegories() {
+    fun getCategories() {
 
         var database = FirebaseFirestore.getInstance()
         database.collection("categorie").get()
