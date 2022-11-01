@@ -3,8 +3,9 @@
 # MASCover
 
 ## iOS Version
-<img src="/image_mas.png" width="40" height="40"/>
- [Github Repo for the iOS Version](https://github.com/tahajadid/MASCover-iOS)
+<img src="/ios_icon.png" width="40" height="40"/>
+
+[Github Repo for the iOS Version](https://github.com/tahajadid/MASCover-iOS)
 
 ## Overview
 MAS Cover is an application that list a couple of images, all the images can be set as a wallpaper of your phone.
