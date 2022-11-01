@@ -3,7 +3,7 @@
 # MASCover
 
 ## iOS Version
-<img src="/ios_icon.png" width="40" height="40"/>
+<img src="/ios_iconn.png" width="40" height="40"/>
 
 [Github Repo for the iOS Version](https://github.com/tahajadid/MASCover-iOS)
 
