@@ -1,22 +1,22 @@
-/**
-* Android Jenkinsfile
-*/
 pipeline {
-    stages {
-      stage("Checkout"){
-        checkout scm
-      }
+    
+  agent { 
+    node { label 'android' }                     (*)
+  }
 
-      stage ("Prepare"){
-        sh 'chmod +x ./gradlew'
-      }
-
-      stage("Build"){
-        if (params.BUILD_CONFIG == 'release') {
-          sh './gradlew clean assembleRelease' // builds app/build/outputs/apk/app-release.apk file
-        } else {
-          sh './gradlew clean assembleDebug' // builds app/build/outputs/apk/app-debug.apk
+  stages {                                     (**)
+    stage('Unit Test') {
+        steps {
+         // Execute your Unit Test
+         sh './gradlew testStagingDebug'
         }
-      }
-   }
+    }
+ }
+
+  post {                                           (*****)
+    always {
+      archiveArtifacts(allowEmptyArchive: true, artifacts: 'app/build/outputs/apk/production/release/*.apk')
+    }
+  }
+
 }
