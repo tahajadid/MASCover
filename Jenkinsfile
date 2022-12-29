@@ -1,7 +1,7 @@
 /**
 * Android Jenkinsfile
 */
-node("Mas Cover"){
+pipeline {
   stage("Checkout"){
     checkout scm
   }
