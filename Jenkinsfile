@@ -1,10 +1,10 @@
 pipeline {
     
   agent { 
-    node { label 'android' }                     (*)
+    node { label 'android' }
   }
 
-  stages {                                     (**)
+  stages {
     stage('Unit Test') {
         steps {
          // Execute your Unit Test
@@ -13,7 +13,7 @@ pipeline {
     }
  }
 
-  post {                                           (*****)
+  post {
     always {
       archiveArtifacts(allowEmptyArchive: true, artifacts: 'app/build/outputs/apk/production/release/*.apk')
     }
