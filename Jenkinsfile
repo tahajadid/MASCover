@@ -1,8 +1,6 @@
 pipeline {
-    
-  agent { 
-    node { label 'maître' }
-  }
+  
+  agent any
 
   stages {
     stage('Unit Test') {
