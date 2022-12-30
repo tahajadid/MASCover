@@ -28,17 +28,18 @@ pipeline {
         sh './gradlew compileReleaseSources'
       }
     }
-  }
-  
-  
-  stage('Publish') {
-     steps {
-        // Archive the APKs so that they can be downloaded from Jenkins
-        archiveArtifacts "**/${APP_NAME}-${BUILD_TYPE}.apk"
-        // Archive the ARR and POM so that they can be downloaded from Jenkins
-        // archiveArtifacts "**/${APP_NAME}-${BUILD_TYPE}.aar, **/*pom-   default.xml*"
+    
+      
+    stage('Publish') {
+       steps {
+          // Archive the APKs so that they can be downloaded from Jenkins
+          archiveArtifacts "**/${APP_NAME}-${BUILD_TYPE}.apk"
+          // Archive the ARR and POM so that they can be downloaded from Jenkins
+          // archiveArtifacts "**/${APP_NAME}-${BUILD_TYPE}.aar, **/*pom-   default.xml*"
+        }
       }
-    }
-  
-
+    
+    
+  }
+ 
 }
