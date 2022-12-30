@@ -9,8 +9,12 @@ pipeline {
     skipStagesAfterUnstable()
   }
   stages {
-   
-    // Put your stages here
+    stage('Unit Test') {
+        steps {
+         // Execute your Unit Test
+         sh './gradlew testStagingDebug'
+        }
+    }
   }
 
 }
