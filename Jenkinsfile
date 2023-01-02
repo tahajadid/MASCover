@@ -30,26 +30,26 @@ pipeline {
     }
     
       
-  stage('Build APK') {
-   steps {
-    // Finish building and packaging the APK
-    sh 'ls -ltr'
-    sh 'pwd'
-    sh 'touch local.properties'
-    sh './gradlew clean'
-    sh './gradlew androidDependencies'
-    sh './gradlew assembleDebug'
-    // Archive the APKs so that they can be downloaded from Jenkins
-    archiveArtifacts '**/*.apk'
+    stage('Build APK') {
+      steps {
+        // Finish building and packaging the APK
+        sh 'ls -ltr'
+        sh 'pwd'
+        sh 'touch local.properties'
+        sh './gradlew clean'
+        sh './gradlew androidDependencies'
+        sh './gradlew assembleDebug'
+        // Archive the APKs so that they can be downloaded from Jenkins
+        archiveArtifacts '**/*.apk'
+      }
    }
- }
 
- stage ('Generate release'){
-    steps {
-      sh 'ls -ltr'
-      sh 'touch local.properties'
-      sh './gradlew assembleRelease'
-    }
+   stage ('Generate release'){
+      steps {
+        sh 'ls -ltr'
+        sh 'touch local.properties'
+        sh './gradlew assembleRelease'
+      }
    }
 
     
