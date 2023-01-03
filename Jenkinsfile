@@ -8,6 +8,7 @@ pipeline {
     // Stop the build early in case of compile or test failures
     skipStagesAfterUnstable()
   }
+  
   stages {
     
     stage('Detect build type') {
@@ -51,6 +52,15 @@ pipeline {
         sh './gradlew assembleRelease'
       }
    }
+    
+    
+   stage ('App Distribution'){
+      steps {
+        sh "./gradlew assembleRelease appDistributionUploadRelease"
+        // sh 'ls /var/jenkins/workspace/cteurs-android-dev-multi_develop/app/build/outputs/apk/release/'
+      }
+   }
+
 
     
   }
