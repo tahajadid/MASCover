@@ -6,6 +6,7 @@ plugins {
     id 'kotlin-kapt'
     id 'androidx.navigation.safeargs.kotlin'
     id 'com.google.firebase.crashlytics'
+    id 'com.google.firebase.appdistribution'
 }
 
 android {
@@ -26,9 +27,9 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             firebaseAppDistribution {
-                appId = "1:1068414615411:android:ff9e8684c36e9e96250f06"
-                groups = "Version Dev"
-                serviceCredentialsFile = "mas-cover-firebase-adminsdk-n61dl-91fa7dde82.json"
+                appId = "1:916056989212:android:b3c3f1ce9d1eff6ae189d9"
+                groups = "Acteurs_Marche_Testing_group"
+                serviceCredentialsFile = "acteurs-marche-firebase-adminsdk.json"
                 releaseNotes = "New version for test"
             }
         }
