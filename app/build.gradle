@@ -29,7 +29,7 @@ android {
             firebaseAppDistribution {
                 appId = "1:916056989212:android:b3c3f1ce9d1eff6ae189d9"
                 groups = "Acteurs_Marche_Testing_group"
-                serviceCredentialsFile = "acteurs-marche-firebase-adminsdk.json"
+                serviceCredentialsFile = "mas-cover-firebase-adminsdk-n61dl-91fa7dde82.json"
                 releaseNotes = "New version for test"
             }
         }
