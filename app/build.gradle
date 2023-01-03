@@ -25,6 +25,12 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            firebaseAppDistribution {
+                appId = "1:1068414615411:android:ff9e8684c36e9e96250f06"
+                groups = "Version Dev"
+                serviceCredentialsFile = "mas-cover-firebase-adminsdk-n61dl-91fa7dde82.json"
+                releaseNotes = "New version for test"
+            }
         }
     }
     compileOptions {
