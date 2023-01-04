@@ -66,8 +66,6 @@ pipeline {
         // sh 'ls /var/jenkins/workspace/cteurs-android-dev-multi_develop/app/build/outputs/apk/release/'
       }
    }
-
-
     
   }
  
