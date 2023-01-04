@@ -30,6 +30,12 @@ pipeline {
       }
     }
     
+    stage ("Unit Test"){
+      steps {
+        sh './gradlew test'
+      }
+    }
+
       
     stage('Build APK') {
       steps {
