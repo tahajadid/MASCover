@@ -59,6 +59,14 @@ pipeline {
       }
    }
     
+   stage ('App Distribution'){
+      steps {
+        sh "./gradlew assembleRelease appDistributionUploadRelease"
+        // sh 'ls /var/jenkins/workspace/cteurs-android-dev-multi_develop/app/build/outputs/apk/release/'
+      }
+   }
+    
+    
   }
  
 }
