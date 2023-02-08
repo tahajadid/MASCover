@@ -1,13 +1,13 @@
 # MASCover
 
-<img src="https://github.com/tahajadid/MASCover/blob/main/app/src/main/res/drawable-v24/only_mas_cover.png"/>
+<img src="/ios_iconn.png"/>
 
 ## Overview
 MAS Cover is an application that list a couple of images, all the images can be set as a wallpaper of your phone.
 the word MAS is the name of a Moroccan football team, and the application developed to help the "Fans" to find some wallpapers that describe their culture, logo...
 
 ## iOS Version
-<img src="/mas_cover.png" width="40" height="50"/>
+<img src="/ios_iconn.png" width="40" height="40"/>
 
 You can check the [Github Repo for the iOS Version](https://github.com/tahajadid/MASCover-iOS)
 
