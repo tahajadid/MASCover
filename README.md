@@ -13,6 +13,6 @@ You can check the [Github Repo for the iOS Version](https://github.com/tahajadid
 
 <img src="/image_mas.png" width="600" height="430"/>
 
-<img src="/image_mas-3.png" width="600" height="450"/>
+<img src="/image_mas-3.png" width="600" height="430"/>
 
-<img src="/image_mas-2.png" width="600" height="450"/>
+<img src="/image_mas-2.png" width="600" height="430"/>
