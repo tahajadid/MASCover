@@ -1,6 +1,6 @@
 # MASCover
 
-<img src="/ios_iconn.png"/>
+<img src="/mas_cover.png"/>
 
 ## Overview
 MAS Cover is an application that list a couple of images, all the images can be set as a wallpaper of your phone.
