@@ -1,8 +1,6 @@
-# MASCover
-
 <img src="/mas_cover.png"/>
 
-## Overview
+# Overview
 MAS Cover is an application that list a couple of images, all the images can be set as a wallpaper of your phone.
 the word MAS is the name of a Moroccan football team, and the application developed to help the "Fans" to find some wallpapers that describe their culture, logo...
 
