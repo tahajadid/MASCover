@@ -8,7 +8,9 @@ MAS Cover is an application that list a couple of images, all the images can be 
 the word MAS is the name of a Moroccan football team, and the application developed to help the "Fans" to find some wallpapers that describe their culture, logo...
 
 ## iOS Version
-<img src="/ios_iconn.png" width="40" height="46" style="max-width: 100%;">
+<center>
+<a href="https://github.com/tahajadid/MASCover-iOS"><img src="/ios_iconn.png" width="40" height="46" style="max-width: 100%;"/></a>
+</center>
    
 You can check the [Github Repo for the iOS Version](https://github.com/tahajadid/MASCover-iOS)
 
