@@ -1,5 +1,5 @@
 <center>
-<a href="https://play.google.com/store/apps/details?id=tahadeta.example.mascover"><img src="/play_store_icon.png" width="160" height="70"/></a>
+<a href="https://play.google.com/store/apps/details?id=tahadeta.example.mascover"><img src="/play_store_icon.png" width="180" height="70"/></a>
 </center>
 <img src="/mas_cover.png"/>
 
