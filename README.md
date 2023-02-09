@@ -1,3 +1,6 @@
+<center>
+<a href="https://play.google.com/store/apps/details?id=tahadeta.example.mascover"><img src="/play_store_icon.png" width="120" height="40"/></a>
+</center>
 <img src="/mas_cover.png"/>
 
 # Overview
@@ -5,9 +8,7 @@ MAS Cover is an application that list a couple of images, all the images can be 
 the word MAS is the name of a Moroccan football team, and the application developed to help the "Fans" to find some wallpapers that describe their culture, logo...
 
 ## iOS Version
-<center>
-<a href="https://www.tutorialspoint.com"><img src="/ios_iconn.png" width="40" height="40"/></a>
-</center>
+
    
 You can check the [Github Repo for the iOS Version](https://github.com/tahajadid/MASCover-iOS)
 
