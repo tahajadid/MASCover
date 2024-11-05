@@ -10,14 +10,14 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk 34
 
     defaultConfig {
         applicationId "tahadeta.example.mascover"
         minSdk 23
-        targetSdk 32
-        versionCode 13
-        versionName "1.2.3"
+        targetSdk 34
+        versionCode 14
+        versionName "1.2.4"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -110,8 +110,6 @@ dependencies {
     // Used for the calls to addCallback() in the snippets on this page.
     implementation 'com.google.guava:guava:28.0-android'
 
-    // GlobalExceptionHandler
-    implementation 'com.github.emirhankolver:GlobalExceptionHandler:1.0.1'
-
-
+    // for ads
+    implementation 'com.google.android.gms:play-services-ads:22.2.0'
 }

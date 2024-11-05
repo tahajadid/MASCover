@@ -14,9 +14,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
-import android.widget.Button
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
@@ -25,14 +23,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
-import com.facebook.ads.AdSettings
-import com.facebook.ads.AdSize
-import com.facebook.ads.AdView
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
 import com.google.firebase.firestore.FirebaseFirestore
 import tahadeta.example.mascover.BuildConfig
 import tahadeta.example.mascover.R
 import tahadeta.example.mascover.data.Categorie
 import tahadeta.example.mascover.util.Constants
+import tahadeta.example.mascover.util.Constants.LINK_STORE
 import tahadeta.example.mascover.util.ModelPreferencesManager
 import tahadeta.example.mascover.util.updateShown
 
@@ -49,13 +47,16 @@ class HomeFragment : Fragment() {
     private lateinit var yellowImage: ImageView
     private lateinit var settingBack: View
     lateinit var animationView: LottieAnimationView
-    //lateinit var adView: AdView
+    // lateinit var adView: AdView
 
     // For Demo
     lateinit var okOne: TextView
     lateinit var okTwo: TextView
     lateinit var demoOneCl: ConstraintLayout
     lateinit var demoTwoCl: ConstraintLayout
+
+    // Ads View
+    lateinit var adView: AdView
 
     var flashIsOne = false
 
@@ -68,7 +69,7 @@ class HomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         // Inflate the layout for this fragment
         val root = inflater.inflate(R.layout.fragment_home, container, false)
@@ -84,11 +85,7 @@ class HomeFragment : Fragment() {
         demoTwoCl = root.findViewById(R.id.demo_four_cl)
         okOne = root.findViewById(R.id.okDemo_one)
         okTwo = root.findViewById(R.id.okDemo_three)
-
-        // val adContainer = root.findViewById<View>(R.id.banner_container) as LinearLayout
-        // adView = AdView(requireContext(), "602184014891911_602307324879580", AdSize.BANNER_HEIGHT_50)
-        // adContainer.addView(adView)
-        // adView.loadAd()
+        adView = root.findViewById(R.id.adView)
 
         Handler().postDelayed({
             if (ModelPreferencesManager.get<Boolean>(Constants.DEMO_SHOW_FLASH) == null) {
@@ -103,15 +100,12 @@ class HomeFragment : Fragment() {
     }
 
     override fun onDestroy() {
-        /*
-        if (adView != null) {
-            adView.destroy()
-        }
-         */
         super.onDestroy()
     }
 
     private fun initComponent() {
+        // set Banner Ads
+        setBannerAds()
 
         listCategories = ArrayList()
         getCategories()
@@ -141,7 +135,6 @@ class HomeFragment : Fragment() {
         }
 
         flashImage.setOnClickListener {
-
             if (flashIsOne) {
                 flashIsOne = false
                 flashImage.setImageResource(R.drawable.flash_empty)
@@ -168,6 +161,11 @@ class HomeFragment : Fragment() {
         yellowImage.setOnClickListener {
             findNavController().navigate(R.id.yellowScreenFragment)
         }
+    }
+
+    private fun setBannerAds() {
+        val adRequest = AdRequest.Builder().build()
+        adView.loadAd(adRequest)
     }
 
     private fun showDemoOne() {
@@ -198,12 +196,15 @@ class HomeFragment : Fragment() {
         var database = FirebaseFirestore.getInstance()
         database.collection("version").document("version").get()
             .addOnCompleteListener {
-                val version = it.result!!["versionNumber"]
+                val version = it.result["versionNumber"]
                 if (!version!!.equals(actualVersion)) {
                     if (!updateShown) {
                         updateShown = true
                         Handler().postDelayed({
-                            openPopupUpdate(it.result!!["storeLink"].toString())
+                            openPopupUpdate(
+                                it.result["storeLink"].toString()
+                                    ?: LINK_STORE,
+                            )
                         }, 2000)
                     }
                 }
@@ -217,7 +218,6 @@ class HomeFragment : Fragment() {
         var cancel_Btn = dialog.findViewById<TextView>(R.id.cancel_Btn)
 
         update_Btn.setOnClickListener {
-
             val uri: Uri =
                 Uri.parse(link) // missing 'http://' will cause crashed
 
@@ -239,7 +239,6 @@ class HomeFragment : Fragment() {
     }
 
     fun getCategories() {
-
         var database = FirebaseFirestore.getInstance()
         database.collection("categorie").get()
             .addOnCompleteListener {

@@ -23,6 +23,7 @@ class SplashActivity : AppCompatActivity() {
 
     lateinit var logo: ImageView
     lateinit var phone: ImageView
+
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +35,6 @@ class SplashActivity : AppCompatActivity() {
         }
 
         Handler().postDelayed({
-
             if (!isOnline(applicationContext)) {
                 showNoInternetPopup()
             } else {
@@ -49,12 +49,9 @@ class SplashActivity : AppCompatActivity() {
 
         fadeToDown(logo, 50F, 1200)
         fadeToUp(phone, 50F, 1000)
-
-
     }
 
     fun fadeToDown(view: View, spaceWithPixel: Float, duration: Long) {
-
         // Set button alpha to the 0
         view.alpha = 0F
         view.translationY = -spaceWithPixel
@@ -64,7 +61,6 @@ class SplashActivity : AppCompatActivity() {
     }
 
     fun fadeToUp(view: View, spaceWithPixel: Float, duration: Long) {
-
         // Set button alpha to the 0
         view.alpha = 0F
         view.translationY = spaceWithPixel

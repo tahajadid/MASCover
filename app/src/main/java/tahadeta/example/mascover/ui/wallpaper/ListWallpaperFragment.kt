@@ -77,13 +77,11 @@ class ListWallpaperFragment : Fragment() {
     }
 
     fun getWallpapers() {
-
         var database = FirebaseFirestore.getInstance()
         database.collection("wallpaper")
             .whereEqualTo("idCategorie", args.idCategorie).get()
             .addOnCompleteListener {
                 if (it.isSuccessful) {
-
                     listWallpapers = ArrayList()
                     for (result in it.result) {
                         listWallpapers.add(result.toObject(Wallpaper::class.java))

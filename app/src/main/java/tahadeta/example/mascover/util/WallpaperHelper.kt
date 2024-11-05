@@ -17,7 +17,6 @@ import com.google.firebase.storage.ktx.storage
 object WallpaperHelper {
 
     fun setImage(image: ImageView, linkStorage: String, context: Context, progressBar: ProgressBar) {
-
         val ref = Firebase.storage.reference.child(linkStorage)
 
         ref.downloadUrl.addOnCompleteListener {
@@ -28,7 +27,7 @@ object WallpaperHelper {
                         e: GlideException?,
                         model: Any?,
                         target: Target<Drawable>?,
-                        isFirstResource: Boolean
+                        isFirstResource: Boolean,
                     ): Boolean {
                         progressBar.visibility = View.GONE
                         return false
@@ -39,7 +38,7 @@ object WallpaperHelper {
                         model: Any?,
                         target: Target<Drawable>?,
                         dataSource: DataSource?,
-                        isFirstResource: Boolean
+                        isFirstResource: Boolean,
                     ): Boolean {
                         progressBar.visibility = View.GONE
                         return false
