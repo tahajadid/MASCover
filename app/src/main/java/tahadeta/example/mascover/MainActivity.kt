@@ -15,6 +15,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.emirhankolver.GlobalExceptionHandler
 import com.facebook.ads.*
+import com.google.android.gms.ads.MobileAds
 import com.zeugmasolutions.localehelper.LocaleHelper
 import com.zeugmasolutions.localehelper.LocaleHelperActivityDelegate
 import com.zeugmasolutions.localehelper.LocaleHelperActivityDelegateImpl
@@ -41,6 +42,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         localeDelegate.onCreate(this)
         setContentView(R.layout.activity_main)
+
+        MobileAds.initialize(this)
+
         GlobalExceptionHandler.initialize(this, CrashActivity::class.java)
 
         AudienceNetworkAds.initialize(this)

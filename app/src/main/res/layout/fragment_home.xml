@@ -38,15 +38,12 @@
         android:id="@+id/listCategories"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="10dp"
         android:layoutAnimation="@anim/layout_animation"
         app:layout_constraintBottom_toTopOf="@+id/homeBack"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:listitem="@layout/categorie_item"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/categorieTitle" />
-
-
+        app:layout_constraintTop_toBottomOf="@+id/adView"
+        tools:listitem="@layout/categorie_item" />
 
     <View
         android:id="@+id/view6"
@@ -155,6 +152,19 @@
         app:layout_constraintStart_toStartOf="@+id/settingBack"
         app:layout_constraintTop_toTopOf="@+id/settingBack"
         app:layout_constraintVertical_bias="0.0" />
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="4dp"
+        app:adSize="BANNER"
+        app:adUnitId="ca-app-pub-9891641863040459/4866399667"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/categorieTitle" />
 
     <TextView
         android:id="@+id/categorieTitle"
