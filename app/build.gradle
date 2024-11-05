@@ -10,12 +10,12 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk 34
 
     defaultConfig {
         applicationId "tahadeta.example.mascover"
         minSdk 23
-        targetSdk 32
+        targetSdk 34
         versionCode 14
         versionName "1.2.4"
 
@@ -111,5 +111,5 @@ dependencies {
     implementation 'com.google.guava:guava:28.0-android'
 
     // for ads
-    implementation 'com.google.android.gms:play-services-ads:20.6.0'
+    implementation 'com.google.android.gms:play-services-ads:22.2.0'
 }
