@@ -13,8 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import com.emirhankolver.GlobalExceptionHandler
-import com.facebook.ads.*
+import com.facebook.ads.* // ktlint-disable no-wildcard-imports
 import com.google.android.gms.ads.MobileAds
 import com.zeugmasolutions.localehelper.LocaleHelper
 import com.zeugmasolutions.localehelper.LocaleHelperActivityDelegate
@@ -44,8 +43,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         MobileAds.initialize(this)
-
-        GlobalExceptionHandler.initialize(this, CrashActivity::class.java)
 
         AudienceNetworkAds.initialize(this)
 

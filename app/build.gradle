@@ -110,9 +110,6 @@ dependencies {
     // Used for the calls to addCallback() in the snippets on this page.
     implementation 'com.google.guava:guava:28.0-android'
 
-    // GlobalExceptionHandler
-    implementation 'com.github.emirhankolver:GlobalExceptionHandler:1.0.1'
-
     // for ads
     implementation 'com.google.android.gms:play-services-ads:20.6.0'
 }
