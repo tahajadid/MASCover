@@ -41,7 +41,6 @@ class SettingFragment : Fragment() {
     lateinit var versionNumber: TextView
     //lateinit var adView: AdView
     private lateinit var flashImage: ImageView
-    private lateinit var yellowImage: ImageView
     var flashIsOne = false
     private lateinit var cameraId: String
 
@@ -70,7 +69,6 @@ class SettingFragment : Fragment() {
         versionNumber = root.findViewById(R.id.versionNumber)
 
         flashImage = root.findViewById(R.id.flash_iv)
-        yellowImage = root.findViewById(R.id.yellow_iv)
 
         initFlash()
 
@@ -201,8 +199,5 @@ class SettingFragment : Fragment() {
             }
         }
 
-        yellowImage.setOnClickListener {
-            findNavController().navigate(R.id.yellowScreenFragment)
-        }
     }
 }

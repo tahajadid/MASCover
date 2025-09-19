@@ -31,7 +31,6 @@ class FavouriteFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     //lateinit var adView: AdView
     private lateinit var flashImage: ImageView
-    private lateinit var yellowImage: ImageView
     var flashIsOne = false
     private lateinit var cameraId: String
 
@@ -53,7 +52,6 @@ class FavouriteFragment : Fragment() {
         animationView = root.findViewById(R.id.animationLoading)
         emptyTextView = root.findViewById(R.id.emptyFavouriteLabel)
         flashImage = root.findViewById(R.id.flash_iv)
-        yellowImage = root.findViewById(R.id.yellow_iv)
 
         //val adContainer = root.findViewById<View>(R.id.banner_container) as LinearLayout
         //adView = AdView(requireContext(), "602184014891911_602185281558451", AdSize.BANNER_HEIGHT_50)
@@ -113,9 +111,6 @@ class FavouriteFragment : Fragment() {
             }
         }
 
-        yellowImage.setOnClickListener {
-            findNavController().navigate(R.id.yellowScreenFragment)
-        }
     }
 
     fun getWallpapers() {

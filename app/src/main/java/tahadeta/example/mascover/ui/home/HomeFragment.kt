@@ -44,7 +44,6 @@ class HomeFragment : Fragment() {
     private lateinit var homeBack: View
     private lateinit var favouriteBack: View
     private lateinit var flashImage: ImageView
-    private lateinit var yellowImage: ImageView
     private lateinit var settingBack: View
     lateinit var animationView: LottieAnimationView
     // lateinit var adView: AdView
@@ -80,7 +79,6 @@ class HomeFragment : Fragment() {
         settingBack = root.findViewById(R.id.settingBack)
         animationView = root.findViewById(R.id.animationLoading)
         flashImage = root.findViewById(R.id.flash_iv)
-        yellowImage = root.findViewById(R.id.yellow_iv)
         demoOneCl = root.findViewById(R.id.demo_three_cl)
         demoTwoCl = root.findViewById(R.id.demo_four_cl)
         okOne = root.findViewById(R.id.okDemo_one)
@@ -156,10 +154,6 @@ class HomeFragment : Fragment() {
                     e.printStackTrace()
                 }
             }
-        }
-
-        yellowImage.setOnClickListener {
-            findNavController().navigate(R.id.yellowScreenFragment)
         }
     }
 
