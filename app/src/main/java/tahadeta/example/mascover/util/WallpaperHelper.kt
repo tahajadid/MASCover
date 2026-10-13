@@ -17,6 +17,38 @@ import com.bumptech.glide.request.transition.Transition
 
 object WallpaperHelper {
 
+    fun setImageForDetails(image: ImageView, imageUrl: String, context: Context, progressBar: ProgressBar, imageTiger : ImageView) {
+        Glide.with(context)
+            .load(imageUrl)
+            .addListener(object : RequestListener<Drawable> {
+                override fun onLoadFailed(
+                    e: GlideException?,
+                    model: Any?,
+                    target: Target<Drawable>?,
+                    isFirstResource: Boolean,
+                ): Boolean {
+                    progressBar.visibility = View.GONE
+                    imageTiger.visibility = View.GONE
+                    return false
+                }
+
+                override fun onResourceReady(
+                    resource: Drawable?,
+                    model: Any?,
+                    target: Target<Drawable>?,
+                    dataSource: DataSource?,
+                    isFirstResource: Boolean,
+                ): Boolean {
+                    progressBar.visibility = View.GONE
+                    imageTiger.visibility = View.VISIBLE
+                    return false
+                }
+            })
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
+            .centerCrop()
+            .into(image)
+    }
+
     fun setImage(image: ImageView, imageUrl: String, context: Context, progressBar: ProgressBar) {
         Glide.with(context)
             .load(imageUrl)

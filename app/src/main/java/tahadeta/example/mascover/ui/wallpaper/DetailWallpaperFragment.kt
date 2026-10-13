@@ -60,7 +60,6 @@ class DetailWallpaperFragment : Fragment() {
     lateinit var chooseWallpaper: ConstraintLayout
 
     lateinit var viewloading: View
-    lateinit var loading: LottieAnimationView
 
     var isShow = false
 
@@ -89,7 +88,6 @@ class DetailWallpaperFragment : Fragment() {
         bothTv = root.findViewById(R.id.bothTv)
         chooseWallpaper = root.findViewById(R.id.chooseWallpaper_Cl)
         viewloading = root.findViewById(R.id.viewloading)
-        loading = root.findViewById(R.id.animationLoading)
         progressBar = root.findViewById(R.id.progressBar)
         backImage = root.findViewById(R.id.backImage)
 
@@ -112,14 +110,18 @@ class DetailWallpaperFragment : Fragment() {
             findNavController().navigateUp()
         }
 
-        loading.visibility = View.GONE
 
-        WallpaperHelper.setImage(imageWallpaper, args.path4K, this.requireContext(),progressBarImage)
+        WallpaperHelper.setImageForDetails(
+            imageWallpaper,
+            args.path4K,
+            this.requireContext(),
+            progressBarImage,
+            imageTiger)
         fadeToUp(imagePhone, 70F, 1000)
 
         Handler().postDelayed({
             imageWallpaper.visibility = View.VISIBLE
-            imageTiger.visibility = View.VISIBLE
+            //imageTiger.visibility = View.VISIBLE
             fadeToUp(imageWallpaper, 20F, 300)
         }, 1200) // 3000 is the delayed time in milliseconds.
 
@@ -382,11 +384,9 @@ class DetailWallpaperFragment : Fragment() {
 
     private fun tempoViewLoading() {
         viewloading.visibility = View.VISIBLE
-        loading.visibility = View.VISIBLE
 
         Handler().postDelayed({
             viewloading.visibility = View.GONE
-            loading.visibility = View.GONE
         }, 3000) // 3000 is the delayed time in milliseconds.
 
         chooseWallpaper.visibility = View.GONE

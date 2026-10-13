@@ -26,7 +26,11 @@ class FavouriteListAdapter(
         private val progressBar: ProgressBar = itemView.findViewById(R.id.progressBar)
 
         fun bindView(item: Wallpaper, position: Int, context: Context?) {
-            WallpaperHelper.setImage(imageWallpaper, item.pathPoster.toString(), context!!, progressBar)
+            WallpaperHelper.setImage(
+                imageWallpaper,
+                item.pathPoster.toString(),
+                context!!,
+                progressBar)
         }
     }
 
