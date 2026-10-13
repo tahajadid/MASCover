@@ -5,7 +5,6 @@ import android.annotation.SuppressLint
 import android.app.WallpaperManager
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -25,16 +24,13 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.airbnb.lottie.LottieAnimationView
-import com.google.firebase.Firebase
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.storage
 import tahadeta.example.mascover.R
 import tahadeta.example.mascover.util.Constants
 import tahadeta.example.mascover.util.ModelPreferencesManager
 import tahadeta.example.mascover.util.WallpaperHelper
-import java.io.File
 import java.io.IOException
 
 class DetailWallpaperFragment : Fragment() {
@@ -229,23 +225,25 @@ class DetailWallpaperFragment : Fragment() {
 
         if (isStoragePermissionGranted()) {
             Toast.makeText(activity, Constants.DOWNLOAD_FR, Toast.LENGTH_SHORT).show()
-
-            val refStorage = Firebase.storage.reference.child(pathImage)
-
-            val localFile = File.createTempFile("tempImag", "jpg")
-            refStorage.getFile(localFile).addOnCompleteListener {
-
-                bitmapLast = BitmapFactory.decodeFile(localFile.absolutePath)
-
-                MediaStore.Images.Media.insertImage(
-                    requireActivity().getContentResolver(),
-                    bitmapLast,
-                    pathImage,
-                    "Image"
-                )
-
-                Toast.makeText(activity, Constants.END_DOWNLOAD_FR, Toast.LENGTH_SHORT).show()
-            }
+            WallpaperHelper.downloadBitmap(
+                requireContext(),
+                pathImage,
+                onReady = { bitmap ->
+                    if (!isAdded) return@downloadBitmap
+                    bitmapLast = bitmap
+                    MediaStore.Images.Media.insertImage(
+                        requireActivity().contentResolver,
+                        bitmapLast,
+                        pathImage,
+                        "Image"
+                    )
+                    Toast.makeText(activity, Constants.END_DOWNLOAD_FR, Toast.LENGTH_SHORT).show()
+                },
+                onError = {
+                    if (!isAdded) return@downloadBitmap
+                    Toast.makeText(activity, "Échec du téléchargement", Toast.LENGTH_SHORT).show()
+                }
+            )
         } else {
             Toast.makeText(activity, "Activez la permission", Toast.LENGTH_SHORT).show()
         }
@@ -296,35 +294,35 @@ class DetailWallpaperFragment : Fragment() {
 
                 if (isStoragePermissionGranted()) {
                     Toast.makeText(activity, Constants.DOWNLOAD_FR, Toast.LENGTH_SHORT).show()
+                    WallpaperHelper.downloadBitmap(
+                        requireContext(),
+                        args.path4K,
+                        onReady = { bitmap ->
+                            if (!isAdded) return@downloadBitmap
+                            bitmapLast = bitmap
+                            MediaStore.Images.Media.insertImage(
+                                requireActivity().contentResolver,
+                                bitmapLast,
+                                args.path4K,
+                                "Image"
+                            )
 
-                    val refStorage = Firebase.storage.reference.child(args.path4K)
-
-                    val localFile = File.createTempFile("tempImag", "jpg")
-                    refStorage.getFile(localFile).addOnCompleteListener {
-
-                        bitmapLast = BitmapFactory.decodeFile(localFile.absolutePath)
-
-                        MediaStore.Images.Media.insertImage(
-                            requireActivity().getContentResolver(),
-                            bitmapLast,
-                            args.path4K,
-                            "Image"
-                        )
-
-                        val wallpaperManager =
-                            WallpaperManager.getInstance(context)
-
-                        when (number) {
-                            1 -> wallpaperManager.setBitmap(bitmapLast, null, true, WallpaperManager.FLAG_SYSTEM)
-                            2 -> wallpaperManager.setBitmap(bitmapLast, null, false, WallpaperManager.FLAG_LOCK)
-                            3 -> {
-                                wallpaperManager.setBitmap(bitmapLast, null, false, WallpaperManager.FLAG_LOCK)
-                                wallpaperManager.setBitmap(bitmapLast, null, true, WallpaperManager.FLAG_SYSTEM)
+                            val wallpaperManager = WallpaperManager.getInstance(context)
+                            when (number) {
+                                1 -> wallpaperManager.setBitmap(bitmapLast, null, true, WallpaperManager.FLAG_SYSTEM)
+                                2 -> wallpaperManager.setBitmap(bitmapLast, null, false, WallpaperManager.FLAG_LOCK)
+                                3 -> {
+                                    wallpaperManager.setBitmap(bitmapLast, null, false, WallpaperManager.FLAG_LOCK)
+                                    wallpaperManager.setBitmap(bitmapLast, null, true, WallpaperManager.FLAG_SYSTEM)
+                                }
                             }
+                            Toast.makeText(activity, Constants.END_DOWNLOAD_FR, Toast.LENGTH_SHORT).show()
+                        },
+                        onError = {
+                            if (!isAdded) return@downloadBitmap
+                            Toast.makeText(activity, "Échec du téléchargement", Toast.LENGTH_SHORT).show()
                         }
-
-                        Toast.makeText(activity, Constants.END_DOWNLOAD_FR, Toast.LENGTH_SHORT).show()
-                    }
+                    )
                 } else {
                     Toast.makeText(activity, "Permission Rejetée, Activez la permission", Toast.LENGTH_SHORT).show()
                 }
