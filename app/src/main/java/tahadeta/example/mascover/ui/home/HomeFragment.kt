@@ -191,6 +191,7 @@ class HomeFragment : Fragment() {
         database.collection("version").document("version").get()
             .addOnCompleteListener {
                 val version = it.result["versionNumber"]
+                val isBlocked = it.result["blocked"]
                 if (!version!!.equals(actualVersion)) {
                     if (!updateShown) {
                         updateShown = true
@@ -198,6 +199,7 @@ class HomeFragment : Fragment() {
                             openPopupUpdate(
                                 it.result["storeLink"].toString()
                                     ?: LINK_STORE,
+                                isBlocked as Boolean
                             )
                         }, 2000)
                     }
@@ -205,11 +207,16 @@ class HomeFragment : Fragment() {
             }
     }
 
-    private fun openPopupUpdate(link: String) {
+    private fun openPopupUpdate(link: String, isBlocked : Boolean = false) {
         val dialog = Dialog(this.requireContext())
         dialog.setContentView(R.layout.update_popup_dialog)
         var update_Btn = dialog.findViewById<TextView>(R.id.update_Btn)
         var cancel_Btn = dialog.findViewById<TextView>(R.id.cancel_Btn)
+
+        if(isBlocked) {
+            cancel_Btn.visibility = View.GONE
+            dialog.setCancelable(false)
+        }
 
         update_Btn.setOnClickListener {
             val uri: Uri =
