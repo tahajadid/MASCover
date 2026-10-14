@@ -245,8 +245,12 @@ class HomeFragment : Fragment() {
                     // hide animation
                     animationView.visibility = View.GONE
 
-                    categorieAdapter = CategorieAdapter(this.context, listCategories)
-                    listCategories.sortBy { it.weight }
+                    val filteredList = listCategories
+                        .filter { it.isVisible }
+                        .sortedBy { it.weight }
+                        .toMutableList()
+
+                    categorieAdapter = CategorieAdapter(this.context, filteredList)
                     recyclerView.apply {
                         layoutManager = GridLayoutManager(this.context, 1)
                         adapter = categorieAdapter
