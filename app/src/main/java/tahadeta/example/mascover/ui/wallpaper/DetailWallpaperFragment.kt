@@ -46,6 +46,8 @@ class DetailWallpaperFragment : Fragment() {
     lateinit var progressBarImage: ProgressBar
     lateinit var dislikeImage: ImageView
     lateinit var downloadVew: View
+    lateinit var feedbackPill: View
+    lateinit var sheetScrim: View
     var bitmapLast: Bitmap? = null
     lateinit var backImage: ImageView
     lateinit var imageWallpaper: ImageView
@@ -97,6 +99,8 @@ class DetailWallpaperFragment : Fragment() {
         likeImage = root.findViewById(R.id.likeImage)
         dislikeImage = root.findViewById(R.id.dislikeImage)
         downloadVew = root.findViewById(R.id.downloadView)
+        feedbackPill = root.findViewById(R.id.feedbackPill)
+        sheetScrim = root.findViewById(R.id.sheetScrim)
         imagePhone = root.findViewById(R.id.imagePhone)
         imageTiger = root.findViewById(R.id.imageTiger)
         wallpaperOptions = root.findViewById(R.id.wallpaperOptions)
@@ -243,9 +247,12 @@ class DetailWallpaperFragment : Fragment() {
         optionHome.setOnClickListener { if (!isBusy) selectTarget(1) }
         optionLock.setOnClickListener { if (!isBusy) selectTarget(2) }
         optionBoth.setOnClickListener { if (!isBusy) selectTarget(3) }
-        sheetHandle.setOnClickListener {
-            if (!isBusy && isShow) closeSheet()
-        }
+        sheetHandle.setOnClickListener { dismissSheet() }
+        sheetScrim.setOnClickListener { dismissSheet() }
+    }
+
+    private fun dismissSheet() {
+        if (!isBusy && isShow && sheetLoader.visibility != View.VISIBLE) closeSheet()
     }
 
     private fun openSheet() {
@@ -256,6 +263,8 @@ class DetailWallpaperFragment : Fragment() {
         wallpaperOptions.animate().alpha(1f).translationY(0f).setDuration(180).start()
         isShow = true
         setWallpaperView.setBackgroundResource(R.drawable.bg_define_button_active)
+        setSideActionsVisible(false)
+        sheetScrim.visibility = View.VISIBLE
         updateSelection()
     }
 
@@ -263,6 +272,7 @@ class DetailWallpaperFragment : Fragment() {
         workStartedAt = SystemClock.elapsedRealtime()
         workFinished = false
         wallpaperOptions.visibility = View.GONE
+        sheetScrim.visibility = View.GONE
         sheetLoaderText.text = message
         sheetLoader.visibility = View.VISIBLE
         isShow = true
@@ -293,12 +303,20 @@ class DetailWallpaperFragment : Fragment() {
     private fun closeSheet() {
         wallpaperOptions.visibility = View.GONE
         sheetLoader.visibility = View.GONE
+        sheetScrim.visibility = View.GONE
         isShow = false
         isBusy = false
         setWallpaperView.isEnabled = true
         downloadVew.isEnabled = true
         setWallpaperView.setBackgroundResource(R.drawable.bg_define_button_idle)
         downloadVew.setBackgroundResource(R.drawable.bg_circle_white)
+        setSideActionsVisible(true)
+    }
+
+    private fun setSideActionsVisible(visible: Boolean) {
+        val visibility = if (visible) View.VISIBLE else View.GONE
+        downloadVew.visibility = visibility
+        feedbackPill.visibility = visibility
     }
 
     private fun selectTarget(target: Int) {
@@ -327,22 +345,22 @@ class DetailWallpaperFragment : Fragment() {
         )
     }
 
+    private fun wallpaperDocument(): DocumentReference? {
+        val id = args.idWallpaper
+        if (id.isBlank() || id.contains("/")) return null
+        return FirebaseFirestore.getInstance().collection("wallpaper").document(id)
+    }
+
     private fun incrementDownloads() {
-        var database = FirebaseFirestore.getInstance()
-        val washingtonRef: DocumentReference = database.collection("wallpaper").document(args.idWallpaper)
-        washingtonRef.update("numberDownload", FieldValue.increment(1))
+        wallpaperDocument()?.update("numberDownload", FieldValue.increment(1))
     }
 
     private fun incrementLike() {
-        var database = FirebaseFirestore.getInstance()
-        val washingtonRef: DocumentReference = database.collection("wallpaper").document(args.idWallpaper)
-        washingtonRef.update("numberLike", FieldValue.increment(1))
+        wallpaperDocument()?.update("numberLike", FieldValue.increment(1))
     }
 
     private fun incrementDislike() {
-        var database = FirebaseFirestore.getInstance()
-        val washingtonRef: DocumentReference = database.collection("wallpaper").document(args.idWallpaper)
-        washingtonRef.update("numberDislike", FieldValue.increment(1))
+        wallpaperDocument()?.update("numberDislike", FieldValue.increment(1))
     }
 
     private fun downloadImage(pathImage: String) {
@@ -419,6 +437,7 @@ class DetailWallpaperFragment : Fragment() {
                 downloadAndSet(number)
             } else {
                 applyWallpaper(number)
+                Toast.makeText(activity, getString(R.string.wallpaper_set), Toast.LENGTH_SHORT).show()
                 finishWorkingSheet()
             }
         } catch (e: IOException) {
@@ -455,7 +474,7 @@ class DetailWallpaperFragment : Fragment() {
                         try {
                             saveImage(bitmap)
                             applyWallpaper(number)
-                            Toast.makeText(activity, Constants.END_DOWNLOAD_FR, Toast.LENGTH_SHORT).show()
+                            Toast.makeText(activity, getString(R.string.wallpaper_set), Toast.LENGTH_SHORT).show()
                         } catch (e: IOException) {
                             e.printStackTrace()
                             Toast.makeText(activity, "Échec du téléchargement", Toast.LENGTH_SHORT).show()

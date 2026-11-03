@@ -17,8 +17,14 @@
     <string name="both_screens_subtitle">تناسق كامل على الجهاز</string>
     <string name="loading_download">جارٍ التحميل...</string>
     <string name="loading_wallpaper">جارٍ تعيين الخلفية...</string>
+    <string name="wallpaper_set">تم تعيين خلفية الشاشة</string>
     <string name="feedback">رأيكم</string>
     <string name="notFavourite">notFavourite</string>
+    <string name="new_wallpaper">جديدة</string>
+    <string name="filter_all">الكل</string>
+    <string name="filter_new">جديد</string>
+    <string name="filter_light">فاتح</string>
+    <string name="filter_dark">داكن</string>
     <string name="isFavourite">isFavourite</string>
     <string name="emptyFavourite"> لم تضف صورة في قائمة المفضلات</string>
     <string name="develop">في طور التطوير </string>
@@ -26,6 +32,7 @@
     <string name="lock">شاشة القفل</string>
     <string name="both">الشاشة الرئيسية و القفل</string>
     <string name="choiceLangue">لغة التطبيق</string>
+    <string name="telegram_subtitle">رابط المجموعة المميزة والمجتمع</string>
     <string name="goUpdate">تحديث التطبيق</string>
     <string name="newVersion">نسخة جديدة</string>
     <string name="cancel">إلغاء</string>

@@ -85,13 +85,6 @@ class HomeFragment : Fragment() {
         okTwo = root.findViewById(R.id.okDemo_three)
         adView = root.findViewById(R.id.adView)
 
-        Handler().postDelayed({
-            if (ModelPreferencesManager.get<Boolean>(Constants.DEMO_SHOW_FLASH) == null) {
-                ModelPreferencesManager.put(true, Constants.DEMO_SHOW_FLASH)
-                showDemoOne()
-            }
-        }, 2000)
-
         initComponent()
 
         return root
@@ -132,6 +125,7 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.favouriteFragment)
         }
 
+        flashImage.visibility = View.GONE
         flashImage.setOnClickListener {
             if (flashIsOne) {
                 flashIsOne = false
@@ -162,29 +156,7 @@ class HomeFragment : Fragment() {
         adView.loadAd(adRequest)
     }
 
-    private fun showDemoOne() {
-        demoOneCl.visibility = View.VISIBLE
 
-        okOne.setOnClickListener {
-            demoOneCl.visibility = View.GONE
-            showDemoTwo()
-        }
-        demoOneCl.setOnClickListener {
-            demoOneCl.visibility = View.GONE
-            showDemoTwo()
-        }
-    }
-
-    private fun showDemoTwo() {
-        demoTwoCl.visibility = View.VISIBLE
-
-        okTwo.setOnClickListener {
-            demoTwoCl.visibility = View.GONE
-        }
-        demoTwoCl.setOnClickListener {
-            demoTwoCl.visibility = View.GONE
-        }
-    }
 
     private fun getApplicationVersion() {
         var database = FirebaseFirestore.getInstance()

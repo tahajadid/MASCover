@@ -17,8 +17,14 @@
     <string name="both_screens_subtitle">Harmonie totale sur l\'appareil</string>
     <string name="loading_download">Téléchargement...</string>
     <string name="loading_wallpaper">Définition du fond d\'écran...</string>
+    <string name="wallpaper_set">Le fond d\'écran a été défini</string>
     <string name="feedback">Vos Avis</string>
     <string name="notFavourite">notFavourite</string>
+    <string name="new_wallpaper">NOUVEAU</string>
+    <string name="filter_all">Tous</string>
+    <string name="filter_new">Nouveau</string>
+    <string name="filter_light">Clair</string>
+    <string name="filter_dark">Sombre</string>
     <string name="isFavourite">isFavourite</string>
     <string name="emptyFavourite">Rien a été ajoutés</string>
     <string name="develop">En cours de développement</string>
@@ -26,6 +32,7 @@
     <string name="lock">Verrouillage</string>
     <string name="both">Acceuil et Verrouillage</string>
     <string name="choiceLangue">Langue de l\'application</string>
+    <string name="telegram_subtitle">Lien du groupe VIP &amp; Communauté</string>
     <string name="goUpdate">Mettre à jour</string>
     <string name="newVersion">Nouvelle version sur le Store</string>
     <string name="cancel">Annuler</string>

@@ -6,12 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.ProgressBar
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import tahadeta.example.mascover.R
 import tahadeta.example.mascover.data.Wallpaper
 import tahadeta.example.mascover.util.WallpaperHelper
+import tahadeta.example.mascover.util.addFavourite
 import tahadeta.example.mascover.util.listFavourite
+import tahadeta.example.mascover.util.removeFavourite
 
 class FavouriteListAdapter(
     private val context: Context?,
@@ -46,18 +49,18 @@ class FavouriteListAdapter(
             if (img.tag.equals("notFavourite")) {
                 img.setImageResource(R.drawable.star_fill)
                 img.tag = "isFavourite"
-                listFavourite.add(item)
+                addFavourite(item)
             } else {
                 img.setImageResource(R.drawable.star)
                 img.tag = "notFavourite"
-                listFavourite.remove(item)
+                removeFavourite(item)
             }
         }
 
         // Parse path of the poster to be displayed
         holder.itemView.findViewById<ImageView>(R.id.imageWallpaper).setOnClickListener {
             val action = FavouriteFragmentDirections.actionFavouriteFragmentToDetailWallpaperFragment(
-                item.pathPoster.toString(), item.pathPoster4K.toString()
+                item.idWallpaper.toString(), item.pathPoster4K.toString()
             )
             holder.itemView.findNavController().navigate(action)
         }

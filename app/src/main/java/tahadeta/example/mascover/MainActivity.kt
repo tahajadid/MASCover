@@ -21,6 +21,7 @@ import com.zeugmasolutions.localehelper.LocaleHelperActivityDelegateImpl
 import com.zeugmasolutions.localehelper.Locales
 import tahadeta.example.mascover.util.Constants
 import tahadeta.example.mascover.util.ModelPreferencesManager
+import tahadeta.example.mascover.util.loadFavourites
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -40,6 +41,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         localeDelegate.onCreate(this)
+        ModelPreferencesManager.with(this.application)
+        loadFavourites()
         setContentView(R.layout.activity_main)
 
         MobileAds.initialize(this)
@@ -50,8 +53,6 @@ class MainActivity : AppCompatActivity() {
 
         navController =
             Navigation.findNavController(this, R.id.nav_host_fragment)
-
-        ModelPreferencesManager.with(this.application)
 
         if (ModelPreferencesManager.get<Boolean>(Constants.FIRST_CON) == null) {
             ModelPreferencesManager.put(true, Constants.FIRST_CON)
