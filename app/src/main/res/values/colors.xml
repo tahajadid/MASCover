@@ -12,5 +12,19 @@
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#888888</color>
     <color name="gray_back">#20888888</color>
+    <color name="sheet_background">#F4F4F4</color>
+    <color name="option_selected">#FFF3C4</color>
+    <color name="option_icon">#F0F0F0</color>
+    <color name="option_icon_selected">#F5C518</color>
+    <color name="ready_gold">#C4922A</color>
+    <color name="ready_bg">#FFF6DE</color>
+    <color name="subtitle_gray">#8E8E8E</color>
+    <color name="define_yellow">#F5C518</color>
+    <color name="settings_title">#1B2437</color>
+    <color name="settings_muted">#8B93A7</color>
+    <color name="settings_icon">#E29B12</color>
+    <color name="settings_icon_bg">#FFF4D8</color>
+    <color name="settings_segment">#F1F2F6</color>
+    <color name="settings_chip">#F4F5F8</color>
 
 </resources>

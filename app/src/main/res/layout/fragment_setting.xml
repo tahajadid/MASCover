@@ -10,12 +10,11 @@
     <View
         android:id="@+id/view2"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="50dp"
         android:background="@drawable/bottom_rounded_bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline" />
+        app:layout_constraintStart_toStartOf="parent"/>
 
 
     <ImageView
@@ -52,370 +51,361 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/settingTitle">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="parent">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="24dp">
 
-            <Switch
-                android:id="@+id/switch_fr"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
-                app:layout_constraintEnd_toStartOf="@+id/arab_tv"
-                app:layout_constraintTop_toTopOf="@+id/switch_ar"
-                tools:ignore="UseSwitchCompatOrMaterialXml" />
+                android:layout_marginBottom="14dp"
+                android:background="@drawable/bg_settings_card"
+                android:elevation="2dp"
+                android:orientation="vertical"
+                android:padding="16dp">
 
-            <TextView
-                android:id="@+id/frensh_tv"
-                android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/bg_settings_icon">
+
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_settings_language" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:text="@string/choiceLangue"
+                        android:textAllCaps="true"
+                        android:textColor="@color/settings_title"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/bg_lang_track"
+                    android:orientation="horizontal"
+                    android:padding="6dp">
+
+                    <TextView
+                        android:id="@+id/switch_fr"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_lang_selected"
+                        android:clickable="true"
+                        android:drawablePadding="6dp"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:text="Français"
+                        android:textColor="@color/settings_title"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/switch_ar"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_lang_idle"
+                        android:clickable="true"
+                        android:drawablePadding="6dp"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:text="العربية"
+                        android:textColor="@color/settings_muted"
+                        android:textSize="15sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="6dp"
-                android:text="Français"
-                android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="@+id/switch_fr"
-                app:layout_constraintEnd_toStartOf="@+id/switch_fr"
-                app:layout_constraintTop_toTopOf="@+id/switch_fr" />
+                android:layout_marginBottom="14dp"
+                android:background="@drawable/bg_settings_card"
+                android:elevation="2dp"
+                android:orientation="vertical"
+                android:padding="16dp">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
-            <Switch
-                android:id="@+id/switch_ar"
-                android:layout_width="wrap_content"
+                    <FrameLayout
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/bg_settings_icon">
+
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_settings_bell" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:text="@string/notification"
+                        android:textAllCaps="true"
+                        android:textColor="@color/settings_title"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/notificationActive"
+                        android:textColor="@color/settings_title"
+                        android:textSize="15sp" />
+
+                    <Switch
+                        android:id="@+id/switch_notification"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:showText="false"
+                        android:thumbTint="@color/settings_switch_thumb"
+                        android:trackTint="@color/settings_switch_track"
+                        tools:ignore="UseSwitchCompatOrMaterialXml" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/langueChoice"
-                tools:ignore="UseSwitchCompatOrMaterialXml" />
+                android:layout_marginBottom="14dp"
+                android:background="@drawable/bg_settings_card"
+                android:elevation="2dp"
+                android:orientation="vertical"
+                android:padding="16dp">
 
-            <TextView
-                android:id="@+id/arab_tv"
-                android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/bg_settings_icon">
+
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_settings_telegram" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:text="Telegram"
+                        android:textAllCaps="true"
+                        android:textColor="@color/settings_title"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="@string/telegram_subtitle"
+                    android:textColor="@color/settings_muted"
+                    android:textSize="14sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/imageViewShareTlgrm"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_settings_chip"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:src="@drawable/ic_settings_share" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:text="@string/shareLink"
+                            android:textColor="@color/settings_title"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/imageViewCopy"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_settings_chip"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:src="@drawable/ic_settings_copy" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:text="@string/copy"
+                            android:textColor="@color/settings_title"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="6dp"
-                android:text="العربية"
-                android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="@+id/switch_ar"
-                app:layout_constraintEnd_toStartOf="@+id/switch_ar"
-                app:layout_constraintTop_toTopOf="@+id/switch_ar" />
+                android:background="@drawable/bg_settings_card"
+                android:elevation="2dp"
+                android:orientation="vertical"
+                android:padding="16dp">
 
-            <TextView
-                android:id="@+id/langueChoice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
-                android:fontFamily="sans-serif"
-                android:text="@string/choiceLangue"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold|italic"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView6"
-                app:layout_constraintStart_toEndOf="@+id/imageView6"
-                app:layout_constraintTop_toTopOf="@+id/imageView6" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
+                    <FrameLayout
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/bg_settings_icon">
 
-            <View
-                android:id="@+id/view14"
-                android:layout_width="0dp"
-                android:layout_height="2dp"
-                android:layout_marginStart="10dp"
-                android:background="@color/main_yellow"
-                app:layout_constraintBottom_toBottomOf="@+id/langueChoice"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/langueChoice"
-                app:layout_constraintTop_toTopOf="@+id/langueChoice" />
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_settings_apps" />
+                    </FrameLayout>
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:text="@string/appInfo"
+                        android:textAllCaps="true"
+                        android:textColor="@color/settings_title"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
-            <View
-                android:id="@+id/view8"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginTop="10dp"
-                android:background="@color/gray_back"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/textView3"
-                app:layout_constraintTop_toBottomOf="@+id/switch_ar" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
-            <ImageView
-                android:id="@+id/imageView6"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:src="@drawable/icon_language"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/version"
+                        android:textColor="@color/settings_title"
+                        android:textSize="15sp" />
 
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/languages"
-                android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="@+id/switch_fr"
-                app:layout_constraintStart_toStartOf="@+id/langueChoice"
-                app:layout_constraintTop_toTopOf="@+id/switch_fr" />
+                    <TextView
+                        android:id="@+id/versionNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_version_badge"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="4dp"
+                        android:text="1.0.0"
+                        android:textColor="@color/settings_icon"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
-            <!-- Notification -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="14dp"
+                    android:background="#EEEEF2" />
 
-            <ImageView
-                android:id="@+id/imageViewNotif"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:padding="2dp"
-                android:src="@drawable/icon_notifications"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view8" />
+                <LinearLayout
+                    android:id="@+id/imageViewShare"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingVertical="10dp">
 
-            <TextView
-                android:id="@+id/notificationLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
-                android:fontFamily="sans-serif"
-                android:text="@string/notification"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold|italic"
-                app:layout_constraintBottom_toBottomOf="@+id/imageViewNotif"
-                app:layout_constraintStart_toEndOf="@+id/imageViewNotif"
-                app:layout_constraintTop_toTopOf="@+id/imageViewNotif" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/shareApp"
+                        android:textColor="@color/settings_title"
+                        android:textSize="15sp" />
 
-            <View
-                android:id="@+id/view13"
-                android:layout_width="0dp"
-                android:layout_height="2dp"
-                android:layout_marginStart="10dp"
-                android:background="@color/main_yellow"
-                app:layout_constraintBottom_toBottomOf="@+id/notificationLabel"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/notificationLabel"
-                app:layout_constraintTop_toTopOf="@+id/notificationLabel" />
-
-
-            <View
-                android:id="@+id/view9"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginTop="10dp"
-                android:background="@color/gray_back"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/textView4"
-                app:layout_constraintTop_toBottomOf="@id/switch_notification" />
-
-            <Switch
-                android:id="@+id/switch_notification"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/notificationLabel"
-                tools:ignore="UseSwitchCompatOrMaterialXml" />
-
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/notificationActive"
-                android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="@+id/switch_notification"
-                app:layout_constraintStart_toStartOf="@+id/notificationLabel"
-                app:layout_constraintTop_toTopOf="@+id/switch_notification" />
-
-
-            <!-- Telegram -->
-
-            <ImageView
-                android:id="@+id/imageViewTlgrm"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:src="@drawable/icon_telegram"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view9" />
-
-            <TextView
-                android:id="@+id/tlgrmLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
-                android:fontFamily="sans-serif"
-                android:text="Telegram"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold|italic"
-                app:layout_constraintBottom_toBottomOf="@+id/imageViewTlgrm"
-                app:layout_constraintStart_toEndOf="@+id/imageViewTlgrm"
-                app:layout_constraintTop_toTopOf="@+id/imageViewTlgrm" />
-
-            <View
-                android:id="@+id/view12"
-                android:layout_width="0dp"
-                android:layout_height="2dp"
-                android:layout_marginStart="10dp"
-                android:background="@color/main_yellow"
-                app:layout_constraintBottom_toBottomOf="@+id/tlgrmLabel"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tlgrmLabel"
-                app:layout_constraintTop_toTopOf="@+id/tlgrmLabel" />
-
-
-            <ImageView
-                android:id="@+id/imageViewCopy"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"
-                android:padding="2dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:clickable="true"
-                android:src="@drawable/icon_copy"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageViewTlgrm" />
-
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:text="@string/copy"
-                android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="@+id/imageViewCopy"
-                app:layout_constraintEnd_toStartOf="@+id/imageViewCopy"
-                app:layout_constraintTop_toTopOf="@+id/imageViewCopy" />
-
-            <ImageView
-                android:id="@+id/imageViewShareTlgrm"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginTop="10dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:clickable="true"
-                android:src="@drawable/icon_share_telegram"
-                app:layout_constraintEnd_toEndOf="@+id/switch_fr"
-                app:layout_constraintTop_toBottomOf="@+id/imageViewTlgrm" />
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:text="@string/shareLink"
-                android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="@+id/imageViewShareTlgrm"
-                app:layout_constraintEnd_toStartOf="@+id/imageViewShareTlgrm"
-                app:layout_constraintTop_toTopOf="@+id/imageViewShareTlgrm" />
-
-            <TextView
-                android:id="@+id/textView7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/linkTelegram"
-                android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="@+id/textView6"
-                app:layout_constraintStart_toStartOf="@+id/tlgrmLabel"
-                app:layout_constraintTop_toTopOf="@+id/textView6" />
-
-            <View
-                android:id="@+id/view10"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginTop="10dp"
-                android:background="@color/gray_back"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/textView7"
-                app:layout_constraintTop_toBottomOf="@id/textView7" />
-
-
-            <!-- Information -->
-
-            <ImageView
-                android:id="@+id/imageViewInformation"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:src="@drawable/icon_app"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view10" />
-
-            <TextView
-                android:id="@+id/appLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
-                android:fontFamily="sans-serif"
-                android:text="@string/appInfo"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold|italic"
-                app:layout_constraintBottom_toBottomOf="@+id/imageViewInformation"
-                app:layout_constraintStart_toEndOf="@+id/imageViewInformation"
-                app:layout_constraintTop_toTopOf="@+id/imageViewInformation" />
-
-            <ImageView
-                android:id="@+id/imageViewShare"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"
-                android:padding="2dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:clickable="true"
-                android:src="@drawable/icon_share"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageViewInformation" />
-
-            <TextView
-                android:id="@+id/textView8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:text="@string/shareApp"
-                android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="@+id/imageViewShare"
-                app:layout_constraintEnd_toStartOf="@+id/imageViewShare"
-                app:layout_constraintTop_toTopOf="@+id/imageViewShare" />
-
-            <TextView
-                android:id="@+id/textView9"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/version"
-                android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="@+id/textView8"
-                app:layout_constraintStart_toStartOf="@+id/appLabel"
-                app:layout_constraintTop_toTopOf="@+id/textView8" />
-
-            <TextView
-                android:id="@+id/versionNumber"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:text="1.0.0"
-                android:textColor="@color/gray"
-                app:layout_constraintBottom_toBottomOf="@+id/textView9"
-                app:layout_constraintStart_toEndOf="@+id/textView9"
-                app:layout_constraintTop_toTopOf="@+id/textView9" />
-
-            <View
-                android:id="@+id/view11"
-                android:layout_width="0dp"
-                android:layout_height="2dp"
-                android:layout_marginStart="10dp"
-                android:background="@color/main_yellow"
-                app:layout_constraintBottom_toBottomOf="@+id/appLabel"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/appLabel"
-                app:layout_constraintTop_toTopOf="@+id/appLabel" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_settings_open" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
 
     </ScrollView>
 
@@ -488,8 +478,8 @@
 
     <View
         android:id="@+id/homeBack"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:background="@drawable/custom_cercle_home"
         app:layout_constraintBottom_toTopOf="@+id/view2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -498,8 +488,8 @@
 
     <View
         android:id="@+id/favouriteBack"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:background="@drawable/custom_cercle_home"
         app:layout_constraintBottom_toTopOf="@+id/view2"
         app:layout_constraintEnd_toStartOf="@+id/homeBack"
@@ -508,8 +498,8 @@
 
     <View
         android:id="@+id/settingBack"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:background="@drawable/custom_cercle_home"
         app:layout_constraintBottom_toTopOf="@+id/view2"
         app:layout_constraintEnd_toEndOf="parent"

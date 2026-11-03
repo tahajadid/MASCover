@@ -84,22 +84,24 @@ object WallpaperHelper {
         imageUrl: String,
         onReady: (Bitmap) -> Unit,
         onError: () -> Unit,
-    ) {
+    ): Target<Bitmap> {
+        val target = object : CustomTarget<Bitmap>(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL) {
+            override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
+                onReady(resource)
+            }
+
+            override fun onLoadCleared(placeholder: Drawable?) {
+            }
+
+            override fun onLoadFailed(errorDrawable: Drawable?) {
+                onError()
+            }
+        }
         Glide.with(context)
             .asBitmap()
             .load(imageUrl)
             .diskCacheStrategy(DiskCacheStrategy.ALL)
-            .into(object : CustomTarget<Bitmap>() {
-                override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-                    onReady(resource)
-                }
-
-                override fun onLoadCleared(placeholder: Drawable?) {
-                }
-
-                override fun onLoadFailed(errorDrawable: Drawable?) {
-                    onError()
-                }
-            })
+            .into(target)
+        return target
     }
 }

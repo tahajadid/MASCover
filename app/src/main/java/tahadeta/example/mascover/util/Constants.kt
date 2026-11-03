@@ -9,7 +9,6 @@ object Constants {
     const val FIRST_CON = "FIRST_CON"
     const val IS_FRENSH = "IS_FRENSH"
     const val DEMO_SHOW = "DEMO_SHOW"
-    const val DEMO_SHOW_FLASH = "DEMO_SHOW_FLASH"
 
     const val LINK_TELEGRAM = "https://t.me/+73-Wy4Q1l7E2ZTg8"
     const val LINK_STORE = "https://play.google.com/store/apps/details?id=tahadeta.example.mascover"

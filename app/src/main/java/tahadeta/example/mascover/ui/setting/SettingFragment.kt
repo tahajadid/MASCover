@@ -33,11 +33,11 @@ class SettingFragment : Fragment() {
 
     lateinit var homeImage: View
     lateinit var favouriteImage: View
-    lateinit var switchArab: Switch
-    lateinit var switchFrensh: Switch
-    lateinit var shareTlgrmImage: ImageView
-    lateinit var copyTlgrmImage: ImageView
-    lateinit var shareAppImage: ImageView
+    lateinit var langArab: TextView
+    lateinit var langFrench: TextView
+    lateinit var shareTlgrmImage: View
+    lateinit var copyTlgrmImage: View
+    lateinit var shareAppImage: View
     lateinit var versionNumber: TextView
     //lateinit var adView: AdView
     private lateinit var flashImage: ImageView
@@ -58,10 +58,8 @@ class SettingFragment : Fragment() {
 
         homeImage = root.findViewById(R.id.homeBack)
         favouriteImage = root.findViewById(R.id.favouriteBack)
-        switchArab = root.findViewById(R.id.switch_ar)
-        switchFrensh = root.findViewById(R.id.switch_fr)
-        switchArab.isChecked = false
-        switchFrensh.isChecked = false
+        langArab = root.findViewById(R.id.switch_ar)
+        langFrench = root.findViewById(R.id.switch_fr)
 
         shareTlgrmImage = root.findViewById(R.id.imageViewShareTlgrm)
         copyTlgrmImage = root.findViewById(R.id.imageViewCopy)
@@ -124,35 +122,21 @@ class SettingFragment : Fragment() {
             clipboardManager.setPrimaryClip(clipData)
         }
 
-        // Set the actual language
-        val isFrensh = ModelPreferencesManager.get<Boolean>(Constants.IS_FRENSH)
-        if (isFrensh == false) {
-            switchArab.isChecked = true
-        } else {
-            switchFrensh.isChecked = true
+        val isFrench = ModelPreferencesManager.get<Boolean>(Constants.IS_FRENSH) != false
+        showSelectedLanguage(isFrench)
+
+        langArab.setOnClickListener {
+            if (ModelPreferencesManager.get<Boolean>(Constants.IS_FRENSH) == false) return@setOnClickListener
+            localeDelegate.setLocale(this.requireActivity(), Locales.Arabic)
+            ModelPreferencesManager.put(false, Constants.IS_FRENSH)
+            showSelectedLanguage(false)
         }
 
-        // Behavior of switch with click not with slide
-        switchArab.setOnClickListener {
-            if (switchArab.isChecked) {
-                localeDelegate.setLocale(this.requireActivity(), Locales.Arabic)
-                switchArab.isChecked = true
-                switchFrensh.isChecked = false
-                ModelPreferencesManager.put(false, Constants.IS_FRENSH)
-            } else {
-                switchArab.isChecked = true
-            }
-        }
-
-        switchFrensh.setOnClickListener {
-            if (switchFrensh.isChecked) {
-                localeDelegate.setLocale(this.requireActivity(), Locales.French)
-                switchArab.isChecked = false
-                switchFrensh.isChecked = true
-                ModelPreferencesManager.put(true, Constants.IS_FRENSH)
-            } else {
-                switchFrensh.isChecked = true
-            }
+        langFrench.setOnClickListener {
+            if (ModelPreferencesManager.get<Boolean>(Constants.IS_FRENSH) != false) return@setOnClickListener
+            localeDelegate.setLocale(this.requireActivity(), Locales.French)
+            ModelPreferencesManager.put(true, Constants.IS_FRENSH)
+            showSelectedLanguage(true)
         }
 
         homeImage.setOnClickListener {
@@ -166,6 +150,20 @@ class SettingFragment : Fragment() {
         return root
     }
 
+    private fun showSelectedLanguage(french: Boolean) {
+        langFrench.setBackgroundResource(
+            if (french) R.drawable.bg_lang_selected else R.drawable.bg_lang_idle
+        )
+        langArab.setBackgroundResource(
+            if (french) R.drawable.bg_lang_idle else R.drawable.bg_lang_selected
+        )
+        langFrench.setTextColor(requireContext().getColor(if (french) R.color.settings_title else R.color.settings_muted))
+        langArab.setTextColor(requireContext().getColor(if (french) R.color.settings_muted else R.color.settings_title))
+        langFrench.setTypeface(null, if (french) android.graphics.Typeface.BOLD else android.graphics.Typeface.NORMAL)
+        langArab.setTypeface(null, if (french) android.graphics.Typeface.NORMAL else android.graphics.Typeface.BOLD)
+
+    }
+
     private fun initFlash() {
         var cameraManager = requireActivity().getSystemService(Context.CAMERA_SERVICE) as CameraManager
         try {
@@ -174,6 +172,7 @@ class SettingFragment : Fragment() {
             e.printStackTrace()
         }
 
+        flashImage.visibility = View.GONE
         flashImage.setOnClickListener {
 
             if (flashIsOne) {

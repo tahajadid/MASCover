@@ -85,13 +85,6 @@ class HomeFragment : Fragment() {
         okTwo = root.findViewById(R.id.okDemo_three)
         adView = root.findViewById(R.id.adView)
 
-        Handler().postDelayed({
-            if (ModelPreferencesManager.get<Boolean>(Constants.DEMO_SHOW_FLASH) == null) {
-                ModelPreferencesManager.put(true, Constants.DEMO_SHOW_FLASH)
-                showDemoOne()
-            }
-        }, 2000)
-
         initComponent()
 
         return root
@@ -132,6 +125,7 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.favouriteFragment)
         }
 
+        flashImage.visibility = View.GONE
         flashImage.setOnClickListener {
             if (flashIsOne) {
                 flashIsOne = false
@@ -162,35 +156,14 @@ class HomeFragment : Fragment() {
         adView.loadAd(adRequest)
     }
 
-    private fun showDemoOne() {
-        demoOneCl.visibility = View.VISIBLE
 
-        okOne.setOnClickListener {
-            demoOneCl.visibility = View.GONE
-            showDemoTwo()
-        }
-        demoOneCl.setOnClickListener {
-            demoOneCl.visibility = View.GONE
-            showDemoTwo()
-        }
-    }
-
-    private fun showDemoTwo() {
-        demoTwoCl.visibility = View.VISIBLE
-
-        okTwo.setOnClickListener {
-            demoTwoCl.visibility = View.GONE
-        }
-        demoTwoCl.setOnClickListener {
-            demoTwoCl.visibility = View.GONE
-        }
-    }
 
     private fun getApplicationVersion() {
         var database = FirebaseFirestore.getInstance()
         database.collection("version").document("version").get()
             .addOnCompleteListener {
                 val version = it.result["versionNumber"]
+                val isBlocked = it.result["blocked"]
                 if (!version!!.equals(actualVersion)) {
                     if (!updateShown) {
                         updateShown = true
@@ -198,6 +171,7 @@ class HomeFragment : Fragment() {
                             openPopupUpdate(
                                 it.result["storeLink"].toString()
                                     ?: LINK_STORE,
+                                isBlocked as Boolean
                             )
                         }, 2000)
                     }
@@ -205,11 +179,16 @@ class HomeFragment : Fragment() {
             }
     }
 
-    private fun openPopupUpdate(link: String) {
+    private fun openPopupUpdate(link: String, isBlocked : Boolean = false) {
         val dialog = Dialog(this.requireContext())
         dialog.setContentView(R.layout.update_popup_dialog)
         var update_Btn = dialog.findViewById<TextView>(R.id.update_Btn)
         var cancel_Btn = dialog.findViewById<TextView>(R.id.cancel_Btn)
+
+        if(isBlocked) {
+            cancel_Btn.visibility = View.GONE
+            dialog.setCancelable(false)
+        }
 
         update_Btn.setOnClickListener {
             val uri: Uri =

@@ -86,6 +86,8 @@ class FavouriteFragment : Fragment() {
             getWallpapers()
         }
 
+        flashImage.visibility = View.GONE
+
         flashImage.setOnClickListener {
 
             if (flashIsOne) {
