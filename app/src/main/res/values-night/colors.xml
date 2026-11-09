@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="background_gray">#2A2B31</color>
+    <color name="surface">#1C212B</color>
+    <color name="text_primary">#F4F5F8</color>
+    <color name="gray">#A7AEC0</color>
+    <color name="sheet_background">#1C212B</color>
+    <color name="option_selected">#3A341C</color>
+    <color name="option_icon">#2A3140</color>
+    <color name="subtitle_gray">#A7AEC0</color>
+    <color name="settings_title">#F4F5F8</color>
+    <color name="settings_muted">#A7AEC0</color>
+    <color name="settings_icon_bg">#3A3218</color>
+    <color name="settings_segment">#2A3140</color>
+    <color name="settings_chip">#2A3140</color>
+</resources>
