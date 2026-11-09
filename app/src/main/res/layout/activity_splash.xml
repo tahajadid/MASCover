@@ -39,15 +39,17 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline6"
         app:layout_constraintStart_toStartOf="@+id/guideline5"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/only_mas_cover" />
+        app:srcCompat="@drawable/mas_wallpaper" />
 
     <ImageView
         android:id="@+id/phoneBottomImage"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:scaleType="fitStart"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleApp"
-        app:srcCompat="@drawable/phone_back" />
+        app:srcCompat="@drawable/phone_mockup_new" />
 </androidx.constraintlayout.widget.ConstraintLayout>

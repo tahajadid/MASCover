@@ -21,6 +21,7 @@ import com.zeugmasolutions.localehelper.LocaleHelperActivityDelegateImpl
 import com.zeugmasolutions.localehelper.Locales
 import tahadeta.example.mascover.util.Constants
 import tahadeta.example.mascover.util.ModelPreferencesManager
+import tahadeta.example.mascover.util.ThemeMode
 import tahadeta.example.mascover.util.loadFavourites
 import java.util.*
 
@@ -39,6 +40,7 @@ class MainActivity : AppCompatActivity() {
     @SuppressLint("LongLogTag")
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
+        ThemeMode.apply(this)
         super.onCreate(savedInstanceState)
         localeDelegate.onCreate(this)
         ModelPreferencesManager.with(this.application)

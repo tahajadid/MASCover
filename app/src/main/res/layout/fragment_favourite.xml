@@ -46,10 +46,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:fontFamily="@font/mandarin_regular"
+        android:fontFamily="@font/sportzan"
         android:text="@string/my_favourite"
-        android:textColor="@color/black"
-        android:textSize="30sp"
+        android:textColor="@color/text_primary"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline3" />
 
@@ -191,22 +191,22 @@
         android:id="@+id/emptyFavouriteLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/mandarin_regular"
+        android:fontFamily="@font/sportzan"
         android:text="@string/emptyFavourite"
+        android:textColor="@color/text_primary"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/view6"
         app:layout_constraintEnd_toEndOf="parent"
-        android:textColor="@color/main_yellow"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/animationLoading"
-        app:layout_constraintVertical_bias="0.76" />
+        app:layout_constraintVertical_bias="0.72" />
 
     <ImageView
         android:id="@+id/imageView7"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:padding="14dp"
-        android:src="@drawable/only_mas_cover"
+        android:padding="10dp"
+        android:src="@drawable/mas_wallpaper"
         app:layout_constraintBottom_toBottomOf="@+id/view7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

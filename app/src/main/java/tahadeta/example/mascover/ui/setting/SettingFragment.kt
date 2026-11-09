@@ -13,6 +13,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.facebook.ads.AdSize
@@ -35,6 +36,8 @@ class SettingFragment : Fragment() {
     lateinit var favouriteImage: View
     lateinit var langArab: TextView
     lateinit var langFrench: TextView
+    lateinit var themeLight: TextView
+    lateinit var themeDark: TextView
     lateinit var shareTlgrmImage: View
     lateinit var copyTlgrmImage: View
     lateinit var shareAppImage: View
@@ -60,6 +63,8 @@ class SettingFragment : Fragment() {
         favouriteImage = root.findViewById(R.id.favouriteBack)
         langArab = root.findViewById(R.id.switch_ar)
         langFrench = root.findViewById(R.id.switch_fr)
+        themeLight = root.findViewById(R.id.theme_light)
+        themeDark = root.findViewById(R.id.theme_dark)
 
         shareTlgrmImage = root.findViewById(R.id.imageViewShareTlgrm)
         copyTlgrmImage = root.findViewById(R.id.imageViewCopy)
@@ -124,6 +129,11 @@ class SettingFragment : Fragment() {
 
         val isFrench = ModelPreferencesManager.get<Boolean>(Constants.IS_FRENSH) != false
         showSelectedLanguage(isFrench)
+        val isDark = ModelPreferencesManager.get<Boolean>(Constants.IS_DARK) == true
+        showSelectedTheme(isDark)
+
+        themeLight.setOnClickListener { selectTheme(false) }
+        themeDark.setOnClickListener { selectTheme(true) }
 
         langArab.setOnClickListener {
             if (ModelPreferencesManager.get<Boolean>(Constants.IS_FRENSH) == false) return@setOnClickListener
@@ -162,6 +172,29 @@ class SettingFragment : Fragment() {
         langFrench.setTypeface(null, if (french) android.graphics.Typeface.BOLD else android.graphics.Typeface.NORMAL)
         langArab.setTypeface(null, if (french) android.graphics.Typeface.NORMAL else android.graphics.Typeface.BOLD)
 
+    }
+
+    private fun selectTheme(dark: Boolean) {
+        val current = ModelPreferencesManager.get<Boolean>(Constants.IS_DARK) == true
+        if (current == dark) return
+        ModelPreferencesManager.put(dark, Constants.IS_DARK)
+        showSelectedTheme(dark)
+        AppCompatDelegate.setDefaultNightMode(
+            if (dark) AppCompatDelegate.MODE_NIGHT_YES else AppCompatDelegate.MODE_NIGHT_NO
+        )
+    }
+
+    private fun showSelectedTheme(dark: Boolean) {
+        themeLight.setBackgroundResource(
+            if (dark) R.drawable.bg_lang_idle else R.drawable.bg_lang_selected
+        )
+        themeDark.setBackgroundResource(
+            if (dark) R.drawable.bg_lang_selected else R.drawable.bg_lang_idle
+        )
+        themeLight.setTextColor(requireContext().getColor(if (dark) R.color.settings_muted else R.color.settings_title))
+        themeDark.setTextColor(requireContext().getColor(if (dark) R.color.settings_title else R.color.settings_muted))
+        themeLight.setTypeface(null, if (dark) android.graphics.Typeface.NORMAL else android.graphics.Typeface.BOLD)
+        themeDark.setTypeface(null, if (dark) android.graphics.Typeface.BOLD else android.graphics.Typeface.NORMAL)
     }
 
     private fun initFlash() {

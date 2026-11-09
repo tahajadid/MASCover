@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">MAS Cover</string>
+    <string name="app_name">MAS Wallpaper</string>
     <string name="hello_blank_fragment">مرحبا</string>
     <string name="categorie_title">الفئة</string>
     <string name="add_favourrite">إضافة إلى المفضلة لدي</string>
@@ -32,6 +32,9 @@
     <string name="lock">شاشة القفل</string>
     <string name="both">الشاشة الرئيسية و القفل</string>
     <string name="choiceLangue">لغة التطبيق</string>
+    <string name="appearance">المظهر</string>
+    <string name="theme_light">فاتح</string>
+    <string name="theme_dark">داكن</string>
     <string name="telegram_subtitle">رابط المجموعة المميزة والمجتمع</string>
     <string name="goUpdate">تحديث التطبيق</string>
     <string name="newVersion">نسخة جديدة</string>

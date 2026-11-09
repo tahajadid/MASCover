@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import tahadeta.example.mascover.MainActivity
 import tahadeta.example.mascover.R
+import tahadeta.example.mascover.util.ThemeMode
 
 class SplashActivity : AppCompatActivity() {
 
@@ -26,6 +27,7 @@ class SplashActivity : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
+        ThemeMode.apply(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
