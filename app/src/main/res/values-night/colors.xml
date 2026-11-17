@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="shimmer_base">#2A2E38</color>
     <color name="background_gray">#2A2B31</color>
     <color name="surface">#1C212B</color>
     <color name="text_primary">#F4F5F8</color>

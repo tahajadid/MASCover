@@ -15,6 +15,8 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
 import com.google.firebase.firestore.FirebaseFirestore
 import tahadeta.example.mascover.R
 import tahadeta.example.mascover.data.Wallpaper
@@ -38,6 +40,9 @@ class ListWallpaperFragment : Fragment() {
 
     // get the instance of the animated JSON
     lateinit var animationView: LottieAnimationView
+
+    // Ads View
+    lateinit var adView: AdView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,11 +70,17 @@ class ListWallpaperFragment : Fragment() {
         chipNew = root.findViewById(R.id.chipNew)
         chipLight = root.findViewById(R.id.chipLight)
         chipDark = root.findViewById(R.id.chipDark)
+        adView = root.findViewById(R.id.adView)
+
+
         chipAll.setOnClickListener { selectFilter(FILTER_ALL) }
         chipNew.setOnClickListener { selectFilter(FILTER_NEW) }
         chipLight.setOnClickListener { selectFilter(FILTER_LIGHT) }
         chipDark.setOnClickListener { selectFilter(FILTER_DARK) }
         updateChips()
+
+        setBannerAds()
+
         if (listWallpapers.isNotEmpty()) {
             animationView.visibility = View.GONE
             showWallpapers(animate = false)
@@ -103,6 +114,12 @@ class ListWallpaperFragment : Fragment() {
         super.onDestroyView()
     }
 
+    private fun setBannerAds() {
+        val adRequest = AdRequest.Builder().build()
+        adView.loadAd(adRequest)
+    }
+
+
     fun getWallpapers() {
         var database = FirebaseFirestore.getInstance()
         database.collection("wallpaper")
@@ -112,16 +129,18 @@ class ListWallpaperFragment : Fragment() {
                 if (it.isSuccessful) {
                     listWallpapers = ArrayList()
                     for (result in it.result) {
+                        val downloads = (result.get("numberDownload") as? Number)?.toInt() ?: 0
                         listWallpapers.add(
-                            result.toObject(Wallpaper::class.java).copy(idWallpaper = result.id)
+                            result.toObject(Wallpaper::class.java).copy(
+                                idWallpaper = result.id,
+                                numberDownload = downloads
+                            )
                         )
                         Log.d("FirestoreData2", "Suss = " + result.toString())
                     }
 
                     animationView.visibility = View.GONE
-                    listWallpapers.sortByDescending {
-                        it.numberDownload
-                    }
+                    listWallpapers.sortByDescending { it.numberDownload }
                     showWallpapers(animate = wallpaperAdapter == null)
                 }
             }.addOnFailureListener {
@@ -152,12 +171,13 @@ class ListWallpaperFragment : Fragment() {
     }
 
     private fun filteredWallpapers(): List<Wallpaper> {
-        return when (selectedFilter) {
+        val filtered = when (selectedFilter) {
             FILTER_NEW -> listWallpapers.filter { it.type.equals("NEW", ignoreCase = true) }
             FILTER_LIGHT -> listWallpapers.filter { it.type.equals("LIGHT", ignoreCase = true) }
             FILTER_DARK -> listWallpapers.filter { it.type.equals("DARK", ignoreCase = true) }
             else -> listWallpapers
         }
+        return filtered.sortedByDescending { it.numberDownload }
     }
 
     private fun updateChips() {

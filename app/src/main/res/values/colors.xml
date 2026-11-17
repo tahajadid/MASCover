@@ -26,6 +26,7 @@
     <color name="settings_icon_bg">#FFF4D8</color>
     <color name="settings_segment">#F1F2F6</color>
     <color name="settings_chip">#F4F5F8</color>
+    <color name="shimmer_base">#E3E3E3</color>
     <color name="surface">@color/white</color>
     <color name="text_primary">@color/black</color>
 

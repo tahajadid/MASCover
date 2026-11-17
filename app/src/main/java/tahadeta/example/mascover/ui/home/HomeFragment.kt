@@ -51,7 +51,6 @@ class HomeFragment : Fragment() {
     private lateinit var flashImage: ImageView
     private lateinit var settingBack: View
     lateinit var animationView: LottieAnimationView
-    // lateinit var adView: AdView
 
     // For Demo
     lateinit var okOne: TextView

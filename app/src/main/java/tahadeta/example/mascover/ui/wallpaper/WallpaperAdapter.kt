@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.ProgressBar
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -33,7 +32,7 @@ class WallpaperAdapter(
 
         private val imageAddFavourite: ImageView = itemView.findViewById(R.id.addFavouriteImage)
         private val imageWallpaper: ImageView = itemView.findViewById(R.id.imageWallpaper)
-        private val progressBar: ProgressBar = itemView.findViewById(R.id.progressBar)
+        private val imageShimmer: View = itemView.findViewById(R.id.imageShimmer)
         private val newCl: ConstraintLayout = itemView.findViewById(R.id.new_cl)
 
 
@@ -42,7 +41,7 @@ class WallpaperAdapter(
             val showNew = item.isNew || item.type.equals("NEW", ignoreCase = true)
             newCl.visibility = if (showNew) View.VISIBLE else View.GONE
 
-            WallpaperHelper.setImage(imageWallpaper, item.pathPoster.toString(), context!!,progressBar)
+            WallpaperHelper.setImage(imageWallpaper, item.pathPoster.toString(), context!!, imageShimmer)
 
         }
     }
