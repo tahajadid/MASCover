@@ -1,14 +1,17 @@
 package tahadeta.example.mascover.ui.home
 
+import android.Manifest
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.hardware.camera2.CameraAccessException
 import android.hardware.camera2.CameraManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +19,7 @@ import android.view.ViewGroup
 import android.view.Window
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -32,6 +36,7 @@ import tahadeta.example.mascover.data.Categorie
 import tahadeta.example.mascover.util.Constants
 import tahadeta.example.mascover.util.Constants.LINK_STORE
 import tahadeta.example.mascover.util.ModelPreferencesManager
+import tahadeta.example.mascover.util.runAfterLanguagePrompt
 import tahadeta.example.mascover.util.updateShown
 
 class HomeFragment : Fragment() {
@@ -60,6 +65,10 @@ class HomeFragment : Fragment() {
     var flashIsOne = false
 
     private lateinit var cameraId: String
+    private var notificationPromptShown = false
+    private val notificationPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -159,24 +168,47 @@ class HomeFragment : Fragment() {
 
 
     private fun getApplicationVersion() {
-        var database = FirebaseFirestore.getInstance()
+        val database = FirebaseFirestore.getInstance()
         database.collection("version").document("version").get()
-            .addOnCompleteListener {
-                val version = it.result["versionNumber"]
-                val isBlocked = it.result["blocked"]
-                if (!version!!.equals(actualVersion)) {
-                    if (!updateShown) {
-                        updateShown = true
-                        Handler().postDelayed({
-                            openPopupUpdate(
-                                it.result["storeLink"].toString()
-                                    ?: LINK_STORE,
-                                isBlocked as Boolean
-                            )
-                        }, 2000)
+            .addOnCompleteListener { task ->
+                val snapshot = task.result
+                val needsUpdate = task.isSuccessful &&
+                    snapshot != null &&
+                    snapshot.exists() &&
+                    snapshot.get("versionNumber")?.toString() != actualVersion
+                val storeLink = snapshot?.get("storeLink")?.toString()?.takeIf { it.isNotBlank() }
+                    ?: LINK_STORE
+                val blocked = snapshot?.get("blocked") as? Boolean ?: false
+                Handler(Looper.getMainLooper()).postDelayed({
+                    if (!isAdded) return@postDelayed
+                    runAfterLanguagePrompt {
+                        if (!isAdded) return@runAfterLanguagePrompt
+                        if (needsUpdate) {
+                            if (!updateShown) {
+                                updateShown = true
+                                openPopupUpdate(storeLink, blocked)
+                            }
+                        } else {
+                            askNotificationPermission()
+                        }
                     }
-                }
+                }, 2000)
             }
+    }
+
+    private fun askNotificationPermission() {
+        if (notificationPromptShown) return
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) return
+        if (ContextCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.POST_NOTIFICATIONS
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            return
+        }
+        notificationPromptShown = true
+        ModelPreferencesManager.put(true, Constants.NOTIFICATION_ASKED)
+        notificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
     }
 
     private fun openPopupUpdate(link: String, isBlocked : Boolean = false) {

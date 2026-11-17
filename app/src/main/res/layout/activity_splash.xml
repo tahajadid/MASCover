@@ -39,7 +39,7 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline6"
         app:layout_constraintStart_toStartOf="@+id/guideline5"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/mas_wallpaper" />
+        app:srcCompat="@drawable/header_mas_cover" />
 
     <ImageView
         android:id="@+id/phoneBottomImage"

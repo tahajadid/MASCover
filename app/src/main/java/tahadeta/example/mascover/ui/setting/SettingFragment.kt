@@ -1,5 +1,6 @@
 package tahadeta.example.mascover.ui.setting
 
+import android.Manifest
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
@@ -7,13 +8,18 @@ import android.content.Context.CLIPBOARD_SERVICE
 import android.content.Intent
 import android.hardware.camera2.CameraAccessException
 import android.hardware.camera2.CameraManager
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.app.NotificationManagerCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.facebook.ads.AdSize
@@ -42,10 +48,18 @@ class SettingFragment : Fragment() {
     lateinit var copyTlgrmImage: View
     lateinit var shareAppImage: View
     lateinit var versionNumber: TextView
+    private lateinit var notificationSwitch: Switch
     //lateinit var adView: AdView
     private lateinit var flashImage: ImageView
     var flashIsOne = false
     private lateinit var cameraId: String
+    private var ignoreNotificationSwitch = false
+    private val notificationPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { granted ->
+        if (granted) ModelPreferencesManager.put(true, Constants.NOTIFICATIONS_ON)
+        syncNotificationSwitch()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,6 +84,7 @@ class SettingFragment : Fragment() {
         copyTlgrmImage = root.findViewById(R.id.imageViewCopy)
         shareAppImage = root.findViewById(R.id.imageViewShare)
         versionNumber = root.findViewById(R.id.versionNumber)
+        notificationSwitch = root.findViewById(R.id.switch_notification)
 
         flashImage = root.findViewById(R.id.flash_iv)
 
@@ -135,6 +150,15 @@ class SettingFragment : Fragment() {
         themeLight.setOnClickListener { selectTheme(false) }
         themeDark.setOnClickListener { selectTheme(true) }
 
+        notificationSwitch.setOnCheckedChangeListener { _, isChecked ->
+            if (ignoreNotificationSwitch) return@setOnCheckedChangeListener
+            if (isChecked) {
+                enableNotifications()
+            } else {
+                ModelPreferencesManager.put(false, Constants.NOTIFICATIONS_ON)
+            }
+        }
+
         langArab.setOnClickListener {
             if (ModelPreferencesManager.get<Boolean>(Constants.IS_FRENSH) == false) return@setOnClickListener
             localeDelegate.setLocale(this.requireActivity(), Locales.Arabic)
@@ -158,6 +182,68 @@ class SettingFragment : Fragment() {
         }
 
         return root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (::notificationSwitch.isInitialized) syncNotificationSwitch()
+    }
+
+    private fun enableNotifications() {
+        if (notificationsEnabled()) {
+            ModelPreferencesManager.put(true, Constants.NOTIFICATIONS_ON)
+            return
+        }
+        if (canAskNotificationPermission()) {
+            ModelPreferencesManager.put(true, Constants.NOTIFICATION_ASKED)
+            notificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+        } else {
+            syncNotificationSwitch()
+            showNotificationSettingsAlert()
+        }
+    }
+
+    private fun canAskNotificationPermission(): Boolean {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) return false
+        val alreadyAsked = ModelPreferencesManager.get<Boolean>(Constants.NOTIFICATION_ASKED) == true
+        val canAskAgain = shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS)
+        return canAskAgain || !alreadyAsked
+    }
+
+    private fun notificationsEnabled(): Boolean {
+        return NotificationManagerCompat.from(requireContext()).areNotificationsEnabled()
+    }
+
+    private fun syncNotificationSwitch() {
+        val saved = ModelPreferencesManager.get<Boolean>(Constants.NOTIFICATIONS_ON)
+        val checked = saved != false && notificationsEnabled()
+        ignoreNotificationSwitch = true
+        notificationSwitch.isChecked = checked
+        ignoreNotificationSwitch = false
+    }
+
+    private fun showNotificationSettingsAlert() {
+        AlertDialog.Builder(requireContext())
+            .setTitle(R.string.notification)
+            .setMessage(R.string.notification_settings_message)
+            .setNegativeButton(R.string.cancel, null)
+            .setPositiveButton(R.string.open_settings) { _, _ -> openNotificationSettings() }
+            .show()
+    }
+
+    private fun openNotificationSettings() {
+        val intent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS).putExtra(
+                Settings.EXTRA_APP_PACKAGE,
+                requireContext().packageName
+            )
+        } else {
+            Intent(
+                Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                Uri.fromParts("package", requireContext().packageName, null)
+            )
+        }
+        startActivity(intent)
     }
 
     private fun showSelectedLanguage(french: Boolean) {

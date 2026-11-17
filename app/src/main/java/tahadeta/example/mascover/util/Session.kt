@@ -7,6 +7,23 @@ import tahadeta.example.mascover.data.Wallpaper
 internal var isFrench = "fr"
 internal var listFavourite: MutableList<Wallpaper> = ArrayList()
 internal var updateShown = false
+internal var languageDialogVisible = false
+private var afterLanguagePrompt: (() -> Unit)? = null
+
+internal fun runAfterLanguagePrompt(action: () -> Unit) {
+    if (languageDialogVisible) {
+        afterLanguagePrompt = action
+    } else {
+        action()
+    }
+}
+
+internal fun finishLanguagePrompt() {
+    languageDialogVisible = false
+    val next = afterLanguagePrompt
+    afterLanguagePrompt = null
+    next?.invoke()
+}
 
 private const val FAVOURITES_KEY = "FAVOURITES"
 

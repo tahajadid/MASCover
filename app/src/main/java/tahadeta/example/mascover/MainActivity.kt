@@ -22,6 +22,8 @@ import com.zeugmasolutions.localehelper.Locales
 import tahadeta.example.mascover.util.Constants
 import tahadeta.example.mascover.util.ModelPreferencesManager
 import tahadeta.example.mascover.util.ThemeMode
+import tahadeta.example.mascover.util.finishLanguagePrompt
+import tahadeta.example.mascover.util.languageDialogVisible
 import tahadeta.example.mascover.util.loadFavourites
 import java.util.*
 
@@ -68,8 +70,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showLanguePopup() {
+        languageDialogVisible = true
         val dialog = Dialog(this)
         dialog.setContentView(R.layout.popup_dialog)
+        dialog.setOnDismissListener { finishLanguagePrompt() }
         var arBtn = dialog.findViewById<TextView>(R.id.arab_Btn)
         var frBtn = dialog.findViewById<TextView>(R.id.frensh_Btn)
         var dimissTv = dialog.findViewById<TextView>(R.id.dimiss_tv)

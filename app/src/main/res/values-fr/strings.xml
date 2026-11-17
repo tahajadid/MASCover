@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">MAS Wallpaper</string>
+    <string name="app_name">MAS Cover</string>
     <string name="hello_blank_fragment">Bonjour</string>
     <string name="categorie_title">Catégorie</string>
     <string name="add_favourrite">Ajouter aux favoris</string>
@@ -43,6 +43,8 @@
     <string name="languages">Langues</string>
     <string name="notification">Notifications</string>
     <string name="notificationActive">Activer les notifications</string>
+    <string name="notification_settings_message">Pour recevoir les notifications, autorisez-les dans les paramètres de l\'application.</string>
+    <string name="open_settings">Ouvrir les paramètres</string>
     <string name="linkTelegram">Lien du groupe</string>
     <string name="copy">Copier</string>
     <string name="shareLink">Partager</string>

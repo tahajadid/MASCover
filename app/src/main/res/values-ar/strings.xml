@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">MAS Wallpaper</string>
+    <string name="app_name">MAS Cover</string>
     <string name="hello_blank_fragment">مرحبا</string>
     <string name="categorie_title">الفئة</string>
     <string name="add_favourrite">إضافة إلى المفضلة لدي</string>
@@ -43,6 +43,8 @@
     <string name="languages">اللغات</string>
     <string name="notification">"إشعارات "</string>
     <string name="notificationActive">تفعيل إشعارات</string>
+    <string name="notification_settings_message">لتلقي الإشعارات، اسمح بها من إعدادات التطبيق.</string>
+    <string name="open_settings">فتح الإعدادات</string>
     <string name="linkTelegram">"موقع المجموعة "</string>
     <string name="copy">نسخ</string>
     <string name="shareLink">"مشاركة  "</string>

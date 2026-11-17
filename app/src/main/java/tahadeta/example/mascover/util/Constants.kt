@@ -9,6 +9,8 @@ object Constants {
     const val FIRST_CON = "FIRST_CON"
     const val IS_FRENSH = "IS_FRENSH"
     const val IS_DARK = "IS_DARK"
+    const val NOTIFICATION_ASKED = "NOTIFICATION_ASKED"
+    const val NOTIFICATIONS_ON = "NOTIFICATIONS_ON"
     const val DEMO_SHOW = "DEMO_SHOW"
 
     const val LINK_TELEGRAM = "https://t.me/+73-Wy4Q1l7E2ZTg8"
